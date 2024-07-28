@@ -1,23 +1,45 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
-const User = new mongoose.Schema(
+const UserSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  cart: [
     {
-        name: { type: String, required: true },
-        lastName: { type: String, required: true},
-        email: { type: String, required: true },
-        password: { type: String, required: true },
-        phoneNumber: { type: Number, required: true },
-        cart: {type: Array},
-        wishList: {type: Array},
-        orders: {type: Array},
-        address: {type: String, required: true},
-        role: {type: String,
-            enum: ["user", "admin"],
-            default: "user"
-        }
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+      },
+      quantity: { type: Number, default: 1, required: true },
+    },
+  ],
+  wishList: [
+    {
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Product",
+      },
+    },
+  ],
+  role: { type: String, enum: ["user", "admin"], default: "user" },
+  googleId: {
+    type: String,
+    unique: true,
+  },
+});
+
+UserSchema.pre("save", async function (next) {
+  if (this.isModified("password")) {
+    try {
+      this.password = await bcrypt.hash(this.password, 10);
+    } catch (err) {
+      return next(err);
     }
-)
+  }
+  next();
+});
 
-const UserModel = mongoose.model("UserModel", User);
+const User = mongoose.model("User", UserSchema);
 
-module.exports = UserModel;
+module.exports = User;
