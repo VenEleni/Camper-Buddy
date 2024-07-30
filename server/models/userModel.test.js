@@ -1,50 +1,68 @@
-// const UserModel = require("./userModel");
+const mongoose = require('mongoose');
+const UserModel = require("./userModel");
+const dotenv = require("dotenv");
+dotenv.config();
 
-// const userData = {
-//     name: "Eleni",
-//     lastName: "Veniou",
-//     email: "eleni.veniou@gmail.com",
-//     password: "123456",
-//     address: "Athens",
-//     phoneNumber: 6976543210
-// }
+describe("UsherModel Test", () => {
+    beforeAll(async () => {
+        await mongoose.connect(process.env.MONGO_URL);
+});
 
-// const user = new UserModel(userData);
+afterEach(async () => {
+    await UserModel.deleteMany({});
+});
 
-// test("user model", () => {
+afterAll(async () => {
+    await mongoose.connection.close();
+})
+
+
+it("create & save user successfully", async () => {
+    const userData = {
+        username: "eleni.veniou",
+        email: "eleni.veniou@gmail.com",
+        password: "123456",
+        role : "admin"
+    }
     
-//     expect(user.name).toBe(userData.name);
-//     expect(user.lastName).toBe(userData.lastName);
-//     expect(user.email).toBe(userData.email);
-//     expect(user.phoneNumber).toBe(userData.phoneNumber);
-//     expect(user.address).toBe(userData.address);
-//     expect(user._id).toBeDefined();
-//     expect(user.password).toBeDefined();
-// })
+    const validUser = new UserModel(userData);
+    const savedUser = await validUser.save()
 
-// test("testing reference equality", () => {
-//     expect(user).toEqual(
-//         expect.objectContaining({
-//             name: expect.any(String),
-//             lastName: expect.any(String),
-//             email: expect.any(String),
-//             phoneNumber: expect.any(Number),
-//             address: expect.any(String)
-//         })
-//     )
-// })
+    expect(savedUser._id).toBeDefined();
+    expect(savedUser.username).toBe(userData.username);
+    expect(savedUser.email).toBe(userData.email);
+    expect(savedUser.password).not.toBe(userData.password);
+    expect(savedUser.role).toBe(userData.role);
+})
 
-// test("should return the correct values", () => {
-    
-//     expect(userData).toEqual({name: "Eleni",
-//         lastName: "Veniou",
-//         email: "eleni.veniou@gmail.com",
-//         password: "123456",
-//         address: "Athens",
-//         phoneNumber: 6976543210})
-// })
+it("Save user successfully but it there is a field which is not defined in schema the this field should be undefinied", async () =>{
+    const invalidField = new UserModel({
+        username: "eleni.veniou",
+        lastName: "Nikolidaki",
+        email: "eleni.veniou@gmail.com",
+        password: "123456",
+        role : "admin"
+    })
+    const savedinvalidField = await invalidField.save();
+    expect(savedinvalidField._id).toBeDefined();
+    expect(savedinvalidField.nickname).toBeUndefined()
+//     const invalidUser = new UserModel(userData);
+//     const userWithInvalidField = await invalidUser.save()
+//     const savedUserObject = userWithInvalidField.toObject();
+//   expect(savedUserObject.lastName).toBeUndefined();
+})
 
-// test("a field not defined in schema should be undefined", () => {
-//     const user = new UserModel(userData);
-//     expect(user.age).toBeUndefined();
-// })
+it('create user without required field should fail',async () => {
+    let err;
+    try {
+        const userData = new UserModel({ 
+            email: "eleni.veniou@gmail.com"
+        })
+        await UserModel.save()
+    } catch(error){
+        err = error
+    }
+    expect(err).toBeDefined();
+});
+
+});
