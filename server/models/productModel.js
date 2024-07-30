@@ -24,9 +24,21 @@ const ProductSchema = new mongoose.Schema({
   },
   subcategory: {
     type: String,
-    enum: ["Winter Tents", "Summer Tents" , "4-Season Tents" , "Hammock Tents", "Shade Tents",
-           "Sleeping Equipment", "Survival Supplies", "Lighting Products", "Cooking & Food Equipment",
-           "Personal Care", "Backpacks", "Clothing", "Camping Furniture", "Other"
+    enum: [
+      "Winter Tents",
+      "Summer Tents",
+      "4-Season Tents",
+      "Hammock Tents",
+      "Shade Tents",
+      "Sleeping Equipment",
+      "Survival Supplies",
+      "Lighting Products",
+      "Cooking & Food Equipment",
+      "Personal Care",
+      "Backpacks",
+      "Clothing",
+      "Camping Furniture",
+      "Other",
     ],
     required: true,
   },
@@ -46,34 +58,67 @@ const ProductSchema = new mongoose.Schema({
   reviews: [ReviewSchema],
   createdAt: {
     type: Date,
-    default: Date.now
-  }
+    default: Date.now,
+  },
 });
 
 const ReviewSchema = new mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
-    rating: {
-        type: Number,
-        required: true,
-        min: 1,
-        max: 5
-    },
-    comment: {
-        type: String,
-        required: true
-    },
-    createdAt: {
-        type: Date,
-        default: Date.now
-    }
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+  rating: {
+    type: Number,
+    required: true,
+    min: 1,
+    max: 5,
+  },
+  comment: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+const validCategories = {
+  "Camping Tents": [
+    "Winter Tents",
+    "Summer Tents",
+    "4-Season Tents",
+    "Hammock Tents",
+    "Shade Tents",
+  ],
+  "Camping Essentials": [
+    "Sleeping Equipment",
+    "Survival Supplies",
+    "Lighting Products",
+    "Cooking & Food Equipment",
+  ],
+  "Accessories & Extras": [
+    "Personal Care",
+    "Backpacks",
+    "Clothing",
+    "Camping Furniture",
+    "Other",
+  ],
+};
+
+ProductSchema.pre("save", function (next) {
+  const category = this.category;
+  const subcategory = this.subcategory;
+
+  if (validCategories[category].includes(subcategory)) {
+    next();
+  } else {
+    return next(new Error("Invalid category or subcategory"));
+  }
 });
 
 const Product = mongoose.model("Product", ProductSchema);
 const Review = mongoose.model("Review", ReviewSchema);
 
-module.exports = {Product, Review};
-
+module.exports = { Product, Review };
