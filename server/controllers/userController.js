@@ -12,27 +12,36 @@ exports.getAllUsers = async (req, res) => {
 };
 
 exports.register = async (req, res) => {
+    console.log ("req.body is : " , req.body)
   const { username, email, password, role } = req.body;
   try {
+    console.log("hey i'm inside the try")
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ message: "Email already exists" });
     }
-    const hashedPassword = await bcrypt.hash(password, 10);
     const user = new UserModel({
       username,
       email,
-      password: hashedPassword,
-      role,
+      password,
+      role
     });
-    await user.save();
+    console.log("User before saving:", user);
+    user.password = await bcrypt.hash(password, 10);
+    try {
+        await user.save();
+        console.log("User saved successfully");
+      } catch (saveError) {
+        console.error("Error saving user:", saveError);
+        return res.status(500).json({ message: "Error saving user" });
+      }
     const payload = {
       user: {
         id: user.id,
         role: user.role,
       },
     };
-    const token = jwt.sign(payload, process.env.SECRET_KEY, {
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
     res
@@ -42,6 +51,8 @@ exports.register = async (req, res) => {
     res.status(500).json({ message: "Error creating user" });
   }
 };
+
+
 
 exports.login = async (req, res) => {
   const { email, password } = req.body;
@@ -60,7 +71,7 @@ exports.login = async (req, res) => {
         role: user.role,
       },
     };
-    const token = jwt.sign(payload, process.env.SECRET_KEY, {
+    const token = jwt.sign(payload, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
     res.status(200).json({ message: "Logged in successfully", token: token });

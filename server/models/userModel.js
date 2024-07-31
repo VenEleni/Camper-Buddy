@@ -26,19 +26,20 @@ const UserSchema = new mongoose.Schema({
   googleId: {
     type: String,
     unique: true,
+    sparse: true
   },
 });
 
-UserSchema.pre("save", async function (next) {
-  if (this.isModified("password")) {
-    try {
-      this.password = await bcrypt.hash(this.password, 10);
-    } catch (err) {
-      return next(err);
-    }
-  }
-  next();
-});
+// UserSchema.pre("save", async function (next) {
+//   if (this.isModified("password")) {
+//     try {
+//       this.password = await bcrypt.hash(this.password, 10);
+//     } catch (err) {
+//       return next(err);
+//     }
+//   }
+//   next();
+// });
 
 const User = mongoose.model("User", UserSchema);
 

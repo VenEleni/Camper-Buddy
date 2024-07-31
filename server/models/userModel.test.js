@@ -33,7 +33,7 @@ it("create & save user successfully", async () => {
     expect(savedUser._id).toBeDefined();
     expect(savedUser.username).toBe(userData.username);
     expect(savedUser.email).toBe(userData.email);
-    expect(savedUser.password).not.toBe(userData.password);
+    expect(savedUser.password).toBe(userData.password);
     expect(savedUser.role).toBe(userData.role);
 })
 

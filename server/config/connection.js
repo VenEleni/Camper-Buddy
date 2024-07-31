@@ -8,6 +8,7 @@ async function main() {
     await mongoose.connect(URI);
 }
 
+
 main().then(() => console.log("DB Connected")).catch((err) => console.log(err));
 
 module.exports = main();
