@@ -9,6 +9,7 @@ router.get('/google', passport.authenticate('google', {
   scope: ['profile', 'email']
 }));
 
+
 // Route για την επεξεργασία της απάντησης της Google
 router.get('/google/callback', 
   passport.authenticate('google', { session: true }),
