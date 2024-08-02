@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const UserSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
-  password: { type: String, required: true },
+  password: { type: String, required: function() { return !this.googleId; } },
   cart: [
     {
       product: {
@@ -30,16 +30,28 @@ const UserSchema = new mongoose.Schema({
   },
 });
 
-// UserSchema.pre("save", async function (next) {
-//   if (this.isModified("password")) {
-//     try {
-//       this.password = await bcrypt.hash(this.password, 10);
-//     } catch (err) {
-//       return next(err);
-//     }
-//   }
-//   next();
-// });
+UserSchema.pre("save", async function (next) {
+  if (this.isModified("password") && this.password) {
+    try {
+      this.password = await bcrypt.hash(this.password, 10);
+    } catch (err) {
+      return next(err);
+    }
+  }
+  next();
+});
+
+UserSchema.methods.generateJWT = function() {
+  const payload = {
+    user: {
+      id: this._id,
+      role: this.role,
+    },
+  };
+  return jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  });
+};
 
 const User = mongoose.model("User", UserSchema);
 

@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const UserModel = require("./userModel");
 const dotenv = require("dotenv");
 dotenv.config();
+const bcrypt = require('bcrypt');
 
 //connect in a different db for running tests so we won't effect the db we use for the app
 describe("UsherModel Test", () => {
@@ -33,8 +34,10 @@ it("create & save user successfully", async () => {
     expect(savedUser._id).toBeDefined();
     expect(savedUser.username).toBe(userData.username);
     expect(savedUser.email).toBe(userData.email);
-    expect(savedUser.password).toBe(userData.password);
     expect(savedUser.role).toBe(userData.role);
+
+    const isPasswordCorrect = await bcrypt.compare(userData.password, savedUser.password);
+    expect(isPasswordCorrect).toBe(true);
 })
 
 it("Save user successfully but it there is a field which is not defined in schema the this field should be undefined", async () =>{
