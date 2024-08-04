@@ -18,12 +18,13 @@ require("./passport");
 app.use(express.json());
 app.use(cors({
     origin: "*",
+    credentials: true
 }));
 
 app.use(session({
     secret: process.env.SESSION_SECRET || 'secret',
     resave: false,
-    saveUninitialized: false,
+    saveUninitialized: true
 }));
 
 app.use(passport.initialize());

@@ -20,24 +20,29 @@ exports.register = async (req, res) => {
       username,
       email,
       password,
-      role
+      role,
     });
     await user.save();
     const token = user.generateJWT();
-    res.status(201).json({ message: "User created successfully", token: token });
+    res
+      .status(201)
+      .json({ message: "User created successfully", token: token });
   } catch (error) {
     res.status(500).json({ message: "Error creating user" });
   }
 };
 
 exports.login = async (req, res) => {
+  console.log("req.body is : ", req.body);
   const { email, password } = req.body;
   try {
     const user = await UserModel.findOne({ email });
+    console.log("user is: ", user);
     if (!user) {
       return res.status(401).json({ message: "Invalid email " });
     }
     const isValidPassword = await bcrypt.compare(password, user.password);
+    console.log("valid pass: ", isValidPassword);
     if (!isValidPassword) {
       return res.status(401).json({ message: "Invalid password" });
     }
@@ -47,3 +52,19 @@ exports.login = async (req, res) => {
     res.status(500).json({ message: "Error logging in" });
   }
 };
+
+exports.getUserById = async (req, res) => {
+  console.log(req.params.id);
+  const id = req.params.id;
+  try {
+    const user = await UserModel.findById(id);
+    if (!user) {
+      return res.status(404).json({ msg: "User not found" });
+    }
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching user" });
+  }
+};
+
+

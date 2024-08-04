@@ -17,7 +17,7 @@ const CommentSchema = new mongoose.Schema({
 });
 
 const ForumSchema = new mongoose.Schema({
-  title: {
+  content: {
     type: String,
     required: true,
   },
