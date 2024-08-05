@@ -6,8 +6,6 @@ const dotenv = require("dotenv");
 const app = express();
 const PORT = process.env.PORT || 8080;
 const FRONTEND_URI = process.env.FRONTEND_URI;
-const passport = require("passport");
-const session = require("express-session");
 const userRoutes = require("./routes/userRoute");
 const authRoutes = require('./routes/authRoute')
 
@@ -21,28 +19,14 @@ app.use(cors({
     credentials: true
 }));
 
-app.use(session({
-    secret: process.env.SESSION_SECRET || 'secret',
-    resave: false,
-    saveUninitialized: true
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 app.use('/auth', authRoutes);
 app.use("/user", userRoutes);
 
-app.get("/auth/google",
-    passport.authenticate("google", { scope: ["profile", "email"] })
-);
+app.get("/", (req, res) => {
+    res.send('<a href = "/auth/google">Click on me</a>')
+})
 
-app.get("/auth/google/callback",
-    passport.authenticate("google", { failureRedirect: "/login" }),
-    (req, res) => {
-        res.redirect(FRONTEND_URI);
-    }
-);
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

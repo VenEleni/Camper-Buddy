@@ -2,21 +2,45 @@ const express = require('express');
 const router = express.Router();
 const passport = require('../passport');
 const dotenv = require("dotenv");
+const jwt = require('jsonwebtoken')
+const authUser = require('../middlewares/authUser')
 dotenv.config();
 
-// Route για την ανακατεύθυνση στη Google
+// Route to redirect in Google
 router.get('/google', passport.authenticate('google', {
   scope: ['profile', 'email']
 }));
 
-
-// Route για την επεξεργασία της απάντησης της Google
 router.get('/google/callback', 
-  passport.authenticate('google', { session: true }),
+  passport.authenticate('google', { session: false }),
   (req, res) => {
-    // Αν η αυθεντικοποίηση είναι επιτυχής, ανακατευθύνετε τον χρήστη στο frontend της εφαρμογής σας
-    res.redirect(process.env.FRONTEND_URI || '/');
+    const payload = {
+      user: {
+        id: req.user.id,
+        role: "user"
+      }
+    };
+    console.log("callback payload is ", payload);
+    jwt.sign(payload,
+      process.env.JWT_SECRET,
+      { expiresIn: '1h' },
+      (err, token) => {
+        if (err) throw err;
+        res.redirect(`/auth/protected?token=${token}`);
+      }
+    )
   }
 );
+
+router.get('/protected', authUser, (req,res) => {
+  res.send('Hello, ' + req.user.username);
+})
+
+router.get('/logout', (req, res) => {
+  req.logout(() => {
+      req.flash('success_msg', 'You are logged out');
+      res.redirect('/');
+  });
+});
 
 module.exports = router;
