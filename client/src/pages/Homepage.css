@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap');
+
+.homeBody {
+    background-image: url(../assets/background_img.jpeg);
+    background-repeat: no-repeat;
+    height: 50rem;
+    background-position: center top;
+    background-size: 85rem 55rem;
+}
+
+.homepageContainer{
+    top: 520px;
+    left: 150px;
+}
+
+h3 {
+    font-family: "Julius Sans One", sans-serif;
+    color: white;
+    line-height: 55px;
+  }
