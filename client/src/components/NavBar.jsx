@@ -17,6 +17,9 @@ function NavBar() {
             <Link to="">Blog</Link>
             <Link to="">Forum</Link>
       </div>
+      <div className="login_nav">
+        <Link to="/login">Login</Link>
+      </div>
     </nav>
   );
 }
