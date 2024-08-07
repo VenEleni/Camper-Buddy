@@ -1,0 +1,161 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+.login-form-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0 10px;
+  position: relative; /* Προστέθηκε για να είναι τοποθετημένα σωστά τα απολύτως τοποθετημένα στοιχεία */
+  /* background-color: #ff0000; */
+  background-image: url(../assets/hero-bg.jpg);
+  background-repeat: no-repeat;
+  /* height: 50rem; */
+  background-position: center top;
+  background-size: 85rem 55rem;
+}
+
+.login_quote{
+    color:#e0e0e0;
+    font-style: italic;
+    font-size: 1.5rem;
+}
+
+/* .wrapper {
+  width: 900px;
+  border-radius: 8px;
+  padding: 30px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 1; 
+} */
+
+form {
+ width: 700px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid #ccc;
+  padding: 50px;
+  backdrop-filter: blur(5px);
+}
+
+h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color:#ccc;
+}
+
+.input-field {
+  position: relative;
+  border-bottom: 2px solid #ccc;
+  margin: 15px 0;
+  width: 50%;
+}
+
+.input-field label {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  color: #ccc;
+  font-size: 16px;
+  pointer-events: none;
+  transition: 0.15s ease;
+}
+
+.input-field input {
+  width: 100%;
+  height: 40px;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: #ccc;
+}
+
+.input-field input:focus ~ label,
+.input-field input:valid ~ label {
+  font-size: 0.8rem;
+  top: 10px;
+  transform: translateY(-120%);
+}
+
+.wrapper a {
+  color: #efefef;
+  text-decoration: none;
+}
+
+.wrapper a:hover {
+  text-decoration: underline;
+}
+
+.login_form_button {
+  background: #fff;
+  width: 40%;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  margin-top: 20px;
+  cursor: pointer;
+  border-radius: 3px;
+  font-size: 16px;
+  border: 2px solid transparent;
+  transition: 0.3s ease;
+}
+
+.login_form_button:hover {
+  color: #fff;
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.register {
+  text-align: center;
+  /* margin-top: 30px; */
+  color: #fff;
+}
+
+.line{
+    height: 1px;
+    width: 100%;
+    margin: 40px 0;
+    background-color:#ccc;
+}
+
+.line-div{
+    display: flex;
+    align-items: center;
+    /* background-color: #000; */
+    width: 50%;
+}
+
+.or-h4{
+    font-size: 17px;
+    color:#ccc;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.media-options{
+    /* background-color: aquamarine; */
+    width:35%;
+    padding-left: 10px;
+}
+
+.media-options a{
+    display: flex;
+    color:#ccc;
+    padding-left: 20px;
+}

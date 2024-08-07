@@ -4,6 +4,7 @@ import Home from './pages/Homepage'
 import 'beercss/dist/cdn/beer.min.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 // import Navbar from './components/NavBar';
+import LoginForm from './pages/Login'
 
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
     <Router>
       <Routes>
         <Route path='/' element={<Home />}/>
-        {/* <Route path='/nav' element={<Navbar />}/> */}
+        <Route path='/login' element={<LoginForm />}/>
       </Routes>
     </Router>
   );
