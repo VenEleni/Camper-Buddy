@@ -1,6 +1,6 @@
 import React from "react";
 import "./Homepage.css";
-import 'beercss/dist/cdn/beer.min.css';
+
 import NavBar from "../components/NavBar";
 
 function Homepage() {
