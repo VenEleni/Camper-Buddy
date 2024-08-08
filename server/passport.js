@@ -13,7 +13,7 @@ passport.use(
     async (accessToken, refreshToken, profile, done) => {
       const {id, displayName, emails} = profile;
       try {
-        const user = await UserModel.findOne({ googleId: id });
+        let user = await UserModel.findOne({ googleId: id });
         if (user) {
           return done(null, user);
         } else {

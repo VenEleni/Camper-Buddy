@@ -1,6 +1,7 @@
 const UserModel = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const bcrypt = require("bcrypt");
 
 exports.getAllUsers = async (req, res) => {
   try {
@@ -12,7 +13,7 @@ exports.getAllUsers = async (req, res) => {
 };
 
 exports.register = async (req, res) => {
-  const { username, email, password, role } = req.body;
+  const { username, email, password, role } = req.body; //should include role, even if it's not required.Before this, I tried to register as admin, and it returned the user but with a role as "user".
   try {
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {
@@ -22,7 +23,7 @@ exports.register = async (req, res) => {
       username,
       email,
       password,
-      role,
+      role
     });
     await user.save();
     const token = user.generateJWT();
@@ -30,6 +31,7 @@ exports.register = async (req, res) => {
       .status(201)
       .json({ message: "User created successfully", token: token });
   } catch (error) {
+    console.error("Error creating user:", error);
     res.status(500).json({ message: "Error creating user" });
   }
 };
@@ -51,6 +53,7 @@ exports.login = async (req, res) => {
     const token = user.generateJWT();
     res.status(200).json({ message: "Logged in successfully", token: token });
   } catch (error) {
+    console.error("Error logging in:", error);
     res.status(500).json({ message: "Error logging in" });
   }
 };

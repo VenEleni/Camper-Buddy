@@ -27,7 +27,7 @@ const LoginForm = () => {
       <div className="media-options">
                     <a href="#" className="field google">
                         <img src={googleLogo} alt="" className="google-img"/>
-                        <span>Login with Google</span>
+                        <span>Login via Google</span>
                     </a>
                 </div>
       <div className="register">
