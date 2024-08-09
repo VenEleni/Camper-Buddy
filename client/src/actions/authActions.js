@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axiosInstance from '../components/axiosInstance';
 
 // Action Types
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
@@ -8,7 +8,8 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 
 export const register = (userData) => async (dispatch) => {
   try {
-    const res = await axios.post('/user/register', userData);
+    const res = await axiosInstance.post('/user/register', userData);
+    console.log("res is: ", res);
     dispatch({
       type: REGISTER_SUCCESS,
       payload: res.data,
@@ -24,7 +25,7 @@ export const register = (userData) => async (dispatch) => {
 
 export const login = (userData) => async (dispatch) => {
   try {
-    const res = await axios.post('/user/login', userData);
+    const res = await axiosInstance.post('/user/login', userData);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: res.data,

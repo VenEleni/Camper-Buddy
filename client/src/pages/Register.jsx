@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../actions/authActions';
 import "./Register.css"
 import googleLogo from "../assets/google_logo.png";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
     const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ const RegisterForm = () => {
         email: '',
         password: '',
       });
+      const navigate = useNavigate();
     
       const dispatch = useDispatch();
       const auth = useSelector((state) => state.auth);
@@ -21,6 +23,7 @@ const RegisterForm = () => {
       const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(register(formData));
+        navigate("/");
       };
 
     return (
