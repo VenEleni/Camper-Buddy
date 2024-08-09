@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import logo from "../assets/logo.png";
 import "beercss/dist/cdn/beer.min.css";
 import "./NavBar.css";
@@ -13,7 +13,7 @@ function NavBar() {
         </a>
       </div>
       <div className="navbar-links">
-        <Link to="">E-shop</Link>
+        <Link to="/eshop">E-shop</Link>
         <Link to="">Blog</Link>
         <Link to="">Forum</Link>
       </div>
