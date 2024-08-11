@@ -30,7 +30,7 @@ const Eshop = () => {
 
       <div className="flex top-36 eshop_products">
         {products.map((product) => (
-          <card
+          <div
             key={product.id}
             className=" flex flex-col items-center mx-7 eshop_product"
           >
@@ -41,7 +41,7 @@ const Eshop = () => {
               <button className="eshop_button">Buy Now</button>
               See More..
             </a>
-          </card>
+          </div>
         ))}
       </div>
       )}

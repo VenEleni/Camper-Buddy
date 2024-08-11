@@ -39,7 +39,7 @@ import "beercss/dist/cdn/beer.min.css";
       <fieldset>
         <legend>
           Fill all fields
-          <a href="/" class="chip">
+          <a href="/" className="chip">
             <i>home</i>
           </a>
         </legend>
