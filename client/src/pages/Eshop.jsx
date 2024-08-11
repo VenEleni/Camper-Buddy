@@ -24,7 +24,7 @@ const Eshop = () => {
       {selectedProduct ? (
         <ProductDetails
           product={selectedProduct}
-          onBack={() => setSelectedProduct(null)} // Χρησιμοποίησε το onBack prop για να επιστρέψεις στη λίστα
+          onBack={() => setSelectedProduct(null)} // use onBack prop to come back in this page
         />
       ) : (
 
@@ -32,7 +32,7 @@ const Eshop = () => {
         {products.map((product) => (
           <card
             key={product.id}
-            className=" flex flex-col items-center eshop_product"
+            className=" flex flex-col items-center mx-7 eshop_product"
           >
             <img className="w-52" src={product.image} alt={product.name} onClick={() => setSelectedProduct(product)} />
             <p>{product.title}</p>

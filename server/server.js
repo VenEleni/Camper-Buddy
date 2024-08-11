@@ -9,6 +9,7 @@ const FRONTEND_URI = process.env.FRONTEND_URI;
 const userRoutes = require("./routes/userRoute");
 const authRoutes = require('./routes/authRoute')
 const productRoutes= require('./routes/productRoute')
+const cartRoutes = require('./routes/cartRoute')
 
 
 dotenv.config();
@@ -24,6 +25,7 @@ app.use(cors({
 app.use('/auth', authRoutes);
 app.use("/user", userRoutes);
 app.use('/product', productRoutes);
+app.use('/cart', cartRoutes)
 
 app.get("/", (req, res) => {
     res.send('<a href = "/auth/google">Click on me</a>')
