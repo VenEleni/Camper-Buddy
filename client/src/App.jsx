@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginForm from './pages/Login'
 import RegisterForm from './pages/Register'
 import Eshop from './pages/Eshop'
+import CreateProduct from './pages/CreateProduct'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path='/login' element={<LoginForm />}/>
         <Route path='/register' element={<RegisterForm />}/>
         <Route path='/eshop' element={<Eshop />}/>
+        <Route path='/createproduct' element={<CreateProduct />}/>
       </Routes>
     </Router>
     </Provider>

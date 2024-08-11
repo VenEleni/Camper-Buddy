@@ -33,8 +33,9 @@ exports.createNewProduct = async (req, res) => {
   try {
     const saveNewProduct = await newProduct.save();
     res.status(200).json(saveNewProduct);
-  } catch {
-    res.status(500).json({ message: "Error creating new product" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error.message);
   }
 };
 

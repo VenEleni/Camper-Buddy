@@ -1,69 +1,55 @@
 import React from "react";
 import logo from "../assets/logo.png";
-import 'bootstrap/dist/css/bootstrap.css';
+import "./EshopNavBar.css"
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
 const EshopNavBar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="eshop_nav">
       <div className=" navbar-brand  eshop-logo">
         <a href="/">
           <img src={logo} alt="logo" style={{ width: "100px" }} />
         </a>
       </div>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span className="navbar-toggler-icon"></span>
-  </button>
-  <div className="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul className="navbar-nav mr-auto">
-  <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Camping Tents
-        </a>
-        <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a className="dropdown-item" href="#">Winter Tents</a>
-          <a className="dropdown-item" href="#">Summer Tents</a>
-          <a className="dropdown-item" href="#">4-Season Tents</a>
-          <a className="dropdown-item" href="#">Hammock Tents</a>
-          <a className="dropdown-item" href="#">Shade Tents</a>
-        </div>
-      </li>
-      </ul>
-      <ul className="navbar-nav mr-auto">
-  <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Camping Essentials
-        </a>
-        <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a className="dropdown-item" href="#">Sleeping Equipment</a>
-          <a className="dropdown-item" href="#">Survival Supplies</a>
-          <a className="dropdown-item" href="#">Lighting Products</a>
-          <a className="dropdown-item" href="#">Cooking & Food Equipment</a>
-        </div>
-      </li>
-      </ul>
-      <ul className="navbar-nav mr-auto">
-  <li className="nav-item dropdown">
-        <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Accessories & Extras
-        </a>
-        <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-          <a className="dropdown-item" href="#">Personal Care</a>
-          <a className="dropdown-item" href="#">Backpacks</a>
-          <a className="dropdown-item" href="#">Clothing</a>
-          <a className="dropdown-item" href="#">Camping Furniture</a>
-          <a className="dropdown-item" href="#">Other</a>
-        </div>
-      </li>
-      </ul>
       <div>
-      <i class="bi bi-bag"></i>
+        <select id="Camping Tents" name="Camping Tents" required>
+          <option value="" disabled selected>
+            Camping Tents
+          </option>
+          <option value="Winter Tents">Winter Tents</option>
+          <option value="Summer Tents">Summer Tents</option>
+          <option value="4-Season Tents">4-Season Tents</option>
+          <option value="Hammock Tents">Hammock Tents</option>
+          <option value="Shade Tents">Shade Tents</option>
+        </select>
+        <select id="Camping Essentials" name="Camping Essentials" required>
+          <option value="" disabled selected>
+            Camping Essentials
+          </option>
+          <option value="Sleeping Equipment">Sleeping Equipment</option>
+          <option value="Survival Supplies">Survival Supplies</option>
+          <option value="Lighting Products">Lighting Products</option>
+          <option value="Cooking & Food Equipment">
+            Cooking & Food Equipment
+          </option>
+        </select>
+        <select id="Accessories & Extras" name="Accessories & Extras" required>
+          <option value="" disabled selected>
+          Accessories & Extras
+          </option>
+          <option value="Personal Care">Personal Care</option>
+          <option value="Backpacks">Backpacks</option>
+          <option value="Clothing">Clothing</option>
+          <option value="Camping Furniture">Camping Furniture</option>
+          <option value="Other">Other</option>
+        </select>
+        <div>
+          <a href="/" class="bi bi-bag"></a>
+          <a href="/" class="bi bi-heart-fill"></a>
+          <a href="/createproduct" class="bi bi-plus-circle"></a>
+        </div>
       </div>
-      <div>
-      <i class="bi bi-heart-fill"></i>
-      </div>
-      </div>
-      </nav>
+    </nav>
   );
 };
 
