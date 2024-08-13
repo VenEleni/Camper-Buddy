@@ -6,7 +6,7 @@ import {
 } from "../actions/authActions";
 
 const initialState = {
-  token: localStorage.getItem("token"),
+  token: null,
   isAuthenticated: null,
   user: null,
   error: null,

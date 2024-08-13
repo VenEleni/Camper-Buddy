@@ -11,6 +11,7 @@ import LoginForm from './pages/Login'
 import RegisterForm from './pages/Register'
 import Eshop from './pages/Eshop'
 import CreateProduct from './pages/CreateProduct'
+import FetchCart from './pages/Cart'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path='/register' element={<RegisterForm />}/>
         <Route path='/eshop' element={<Eshop />}/>
         <Route path='/createproduct' element={<CreateProduct />}/>
+        <Route path='/cart' element={<FetchCart />}/>
       </Routes>
     </Router>
     </Provider>

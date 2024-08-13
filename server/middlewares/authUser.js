@@ -9,6 +9,8 @@ const authorization = (req, res, next) => {
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.user = decoded.user;
+    console.log('decoded token on middleware', decoded);
+    console.log('decoded.user token on middleware', decoded.user);
     next();
   } catch (err) {
     res.status(400).json({ msg: "Invalid token." });

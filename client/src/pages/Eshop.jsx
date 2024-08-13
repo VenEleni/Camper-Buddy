@@ -8,8 +8,12 @@ import ProductDetails from './ProductDetails'
 const Eshop = () => {
   const dispatch = useDispatch();
   const productsFetch = useSelector((state) => state.productsFetch);
+  const auth = useSelector((state) => state.auth);
+  const state = useSelector((state) => state);
   const { loading, error, products } = productsFetch || [];
   console.log(products);
+  console.log("auth state in eshop page", auth);
+  console.log("state in eshop page", state);
 
   const [selectedProduct, setSelectedProduct] = useState(null);
   useEffect(() => {

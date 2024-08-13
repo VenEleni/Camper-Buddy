@@ -6,11 +6,12 @@ import {
 
 const initialState = {
   loading: false,
-  products: [],
+  cartItems: [],
   error: null,
 };
 
 export const fetchCartItems = (state = initialState, action) => {
+  console.log("action : ", action);
   switch (action.type) {
     case FETCH_CART_ITEMS:
       return {
@@ -20,16 +21,18 @@ export const fetchCartItems = (state = initialState, action) => {
     case FETCH_CART_ITEMS_SUCCESS:
       return {
         loading: false,
-        products: action.payload,
+        cartItems: action.payload,
         error: null,
       };
     case FETCH_CART_ITEMS_FAIL:
       return {
         loading: false,
-        products: [],
+        cartItems: [],
         error: action.payload,
       };
     default:
       return state;
   }
 };
+
+export default fetchCartItems;

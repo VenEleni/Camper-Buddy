@@ -44,7 +44,7 @@ const EshopNavBar = () => {
           <option value="Other">Other</option>
         </select>
         <div>
-          <a href="/" className="bi bi-bag"></a>
+          <a href="/cart" className="bi bi-bag"></a>
           <a href="/" className="bi bi-heart-fill"></a>
           <a href="/createproduct" className="bi bi-plus-circle"></a>
         </div>
