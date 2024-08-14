@@ -57,7 +57,7 @@ const FetchCart = () => {
         {cartItems && cartItems.length > 0 ? (
           cartItems.map((item) => (
             <div key={item.product._id}>
-              <img src={item.product.image} alt={item.product.title} />
+              <img className="w-24" src={item.product.image} alt={item.product.title} />
               <p>{item.product.title}</p>
               <p>{item.product.price} €</p>
               <p>Quantity: {item.quantity}</p>

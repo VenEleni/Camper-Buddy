@@ -6,9 +6,9 @@ import { addToCart } from "../actions/cartActions";
 const ProductDetails = ({ product, onBack }) => {
     const dispatch = useDispatch();
 
-    // Get the state of the cart from Redux
   const cartState = useSelector((state) => state.cart);
-  const auth = useSelector((state) => state.auth);
+  const auth = JSON.parse(localStorage.getItem('auth'));
+  const token = auth.token;
 //   const { loading, error } = cartState;
 
   const handleAddToCart = async () => {
@@ -18,6 +18,8 @@ const ProductDetails = ({ product, onBack }) => {
     console.log("userId in Product Details:", userId);
     console.log("auth.user in Product Details:", auth.user);
     console.log("product._id in Product Details:", product._id);
+    console.log("token in Product Details:", token);
+    console.log("auth in Product Details:", auth);
 
     if (userId){
       try {

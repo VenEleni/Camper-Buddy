@@ -10,9 +10,9 @@ export const CART_ADD_ITEM_FAIL = "CART_ADD_ITEM_FAIL";
 export const addToCart = (userId, productId) => async (dispatch, getState) => {
   try {
     dispatch({ type: CART_ADD_ITEM });
-    const token = localStorage.getItem('token'); // Get token from localStorage
     const { auth } = getState(); // Get the auth state
     const userIdFromState = auth.user ? auth.user.id : userId;
+    const token = auth.token;
     console.log("auth.user in cartAction as I took it using getState: ", auth.user)
   
       const config = {
