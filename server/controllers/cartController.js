@@ -28,13 +28,9 @@ exports.addToCart = async (req, res) => {
 };
 
 exports.fetchCart = async (req, res) => {
-  console.log( "req.params is : ",req.params.id);
-    const userId = req.params.id;
-    // console.log( "req is : ",req);
-    console.log( "user is : ",req.user);
-    
+    const userId = req.user.id;
     try {
-        const user = await User.findById(req.user.id).populate('cart.product');
+        const user = await User.findById(userId).populate('cart.product', 'title price image');
         res.status(200).json({ cart: user.cart });
 }catch (error) {
     console.log(error);

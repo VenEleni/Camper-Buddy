@@ -17,7 +17,7 @@ export const register = (userData) => async (dispatch) => {
       type: REGISTER_SUCCESS,
       payload: registeredUser,
     });
-    localStorage.setItem('token', res.data.token);
+    localStorage.setItem('auth', JSON.stringify(registeredUser));
   } catch (error) {
     dispatch({
       type: REGISTER_FAIL,
@@ -36,7 +36,7 @@ export const login = (userData) => async (dispatch) => {
       type: LOGIN_SUCCESS,
       payload: loggedInUser,
     });
-    localStorage.setItem('token', res.data.token);
+    localStorage.setItem('auth', JSON.stringify(loggedInUser));
   } catch (error) {
     dispatch({
       type: LOGIN_FAIL,

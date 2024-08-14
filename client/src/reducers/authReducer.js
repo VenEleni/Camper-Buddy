@@ -5,12 +5,36 @@ import {
   LOGIN_FAIL,
 } from "../actions/authActions";
 
-const initialState = {
-  token: null,
-  isAuthenticated: null,
-  user: null,
-  error: null,
-};
+
+let initialState;
+
+try {
+  const authData = localStorage.getItem('auth');
+  if (authData) {
+    const parsedAuthData = JSON.parse(authData);
+    initialState = {
+      token: parsedAuthData.token,
+      isAuthenticated: true,
+      user: parsedAuthData.user,
+      error: null,
+    };
+  } else {
+    initialState = {
+      token: null,
+      isAuthenticated: false,
+      user: null,
+      error: null,
+    };
+  }
+} catch (error) {
+  console.error("Error parsing auth data from localStorage:", error);
+  initialState = {
+    token: null,
+    isAuthenticated: false,
+    user: null,
+    error: null,
+  };
+}
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {

@@ -11,19 +11,24 @@ const ProductDetails = ({ product, onBack }) => {
   const auth = useSelector((state) => state.auth);
 //   const { loading, error } = cartState;
 
-  const handleAddToCart = () => {
-    console.log("auth", auth);
+  const handleAddToCart = async () => {
     
     // Extract userId from the auth state
     const userId = auth.user ? auth.user.id : null;
-    console.log("userId:", userId);
-    console.log("auth.user:", auth.user);
+    console.log("userId in Product Details:", userId);
+    console.log("auth.user in Product Details:", auth.user);
+    console.log("product._id in Product Details:", product._id);
 
-    if (userId) {
-        dispatch(addToCart(userId, product._id));
+    if (userId){
+      try {
+        await dispatch(addToCart(userId, product._id));
+        console.log("Product added to cart successfully");
+      } catch (error) {
+        console.error("Error adding product to cart:", error);
+      }
     } else {
-        console.log("User not authenticated");
-        // Handle cases where user is not authenticated
+      console.log("User not authenticated");
+      // Handle cases where user is not authenticated
     }
   };
 

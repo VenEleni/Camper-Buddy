@@ -3,15 +3,13 @@ import authReducer from './reducers/authReducer';
 import productCreateReducer from './reducers/productCreateReducer';
 import productsFetchReducer from './reducers/productsFetchReducer';
 import addToCartReducer from './reducers/cartReducers';
-import fetchCartItems from './reducers/cartReducers';
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
     productCreate: productCreateReducer,
     productsFetch: productsFetchReducer,
-    addToCart: addToCartReducer,
-    fetchCart: fetchCartItems
+    addToCart: addToCartReducer
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

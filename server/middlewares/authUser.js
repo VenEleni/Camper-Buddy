@@ -13,7 +13,8 @@ const authorization = (req, res, next) => {
     console.log('decoded.user token on middleware', decoded.user);
     next();
   } catch (err) {
-    res.status(400).json({ msg: "Invalid token." });
+    console.error(err);
+    res.status(400).json({ error: err });
   }
 };
 
