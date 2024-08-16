@@ -6,11 +6,39 @@ export const CART_ADD_ITEM_FAIL = "CART_ADD_ITEM_FAIL";
 export const FETCH_CART_ITEMS = "FETCH_CART_ITEMS";
 export const FETCH_CART_ITEMS_SUCCESS = "FETCH_CART_ITEMS_SUCCESS";
 export const FETCH_CART_ITEMS_FAIL = "FETCH_CART_ITEMS_FAIL";
+export const CART_REMOVE_ITEM = "CART_REMOVE_ITEM";
+export const CART_REMOVE_ITEM_SUCCESS = "CART_REMOVE_ITEM_SUCCESS";
+export const CART_REMOVE_ITEM_FAIL = "CART_REMOVE_ITEM_FAIL";
+
+export const removeFromCart = (userId, productId) => async (dispatch, getState) => {
+  try {
+    dispatch({type: CART_REMOVE_ITEM});
+    const { auth } = getState() // Get the auth state
+    const userIdFromState = auth.user ? auth.user.id : userId;
+    const token = auth.token;
+    const config = {
+      headers: {
+        "x-auth-token": token, // Add the token to the request headers
+      },
+    };
+    const { data } = await axiosInstance.post(
+      "/cart/removeFromCart",
+      {
+        userId: userIdFromState,
+        productId,
+      },
+      config
+    );
+    dispatch({ type: CART_REMOVE_ITEM_SUCCESS, payload: data });
+  }catch (error) {
+    dispatch({ type: CART_REMOVE_ITEM_FAIL, payload: error.message });
+  }
+}
 
 export const addToCart = (userId, productId) => async (dispatch, getState) => {
   try {
     dispatch({ type: CART_ADD_ITEM });
-    const { auth } = getState(); // Get the auth state
+    const { auth } = getState() // Get the auth state
     const userIdFromState = auth.user ? auth.user.id : userId;
     const token = auth.token;
     console.log(
