@@ -5,6 +5,7 @@ import { fetchCartItems } from "../actions/cartActions";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { removeFromCart } from "../actions/cartActions";
 import { reduceCartItemQuantity} from "../actions/cartActions";
+import {increaseCartItemQuantity} from "../actions/cartActions";
 
 const FetchCart = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const FetchCart = () => {
         product._id
       );
       try {
-        await dispatch(removeFromCart(userId, product._id));
+        dispatch(removeFromCart(userId, product._id));
         console.log("Product removed from cart successfully");
         window.location.reload();
       } catch (error) {
@@ -39,11 +40,21 @@ const FetchCart = () => {
   
   const handleReduceQuantityFromCart = async (product) => {
     try {
-      await dispatch(reduceCartItemQuantity(userId, product._id));
+      dispatch(reduceCartItemQuantity(userId, product._id));
       console.log("Product's quantity reduced successfully");
       window.location.reload();
     } catch (error) {
       console.error("Error reducing product from cart:", error);
+    }
+  }
+
+  const handleIncreaseQuantityFromCart = async (product) => {
+    try {
+      dispatch(increaseCartItemQuantity(userId, product._id));
+      console.log("Product's quantity increased successfully");
+      window.location.reload();
+    } catch (error) {
+      console.error("Error increasing product from cart:", error);
     }
   }
 
@@ -67,7 +78,7 @@ const FetchCart = () => {
               
               <i class="bi bi-dash-lg" onClick={() => handleReduceQuantityFromCart(item.product)}></i>
               <p>Quantity: {item.quantity}</p>
-              <i class="bi bi-plus-lg"></i>
+              <i class="bi bi-plus-lg" onClick={()=> handleIncreaseQuantityFromCart(item.product)}></i>
               <span
                 onClick={() => handleRemoveFromCart(item.product)}
               >Remove</span>

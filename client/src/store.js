@@ -6,6 +6,7 @@ import addToCartReducer from './reducers/cartReducers';
 import fetchCartItems from './reducers/cartItemsFetchReducer';
 import removeFromCartReducer from './reducers/cartRemoveItemReducer';
 import cartReduceItemQuantityReducer from './reducers/cartReduceItemQuantityReducer';
+import cartIncreaseItemQuantityReducer from './reducers/cartIncreaseQuantityReducer';
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     fetchCart: fetchCartItems,
     removeFromCart: removeFromCartReducer,
     reduceQuantityFromCart: cartReduceItemQuantityReducer,
+    increaseQuantityFromCart: cartIncreaseItemQuantityReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

@@ -12,12 +12,38 @@ export const CART_REMOVE_ITEM_FAIL = "CART_REMOVE_ITEM_FAIL";
 export const CART_REDUCE_ITEM_QUANTITY = "CART_REDUCE_ITEM_QUANTITY";
 export const CART_REDUCE_ITEM_QUANTITY_SUCCESS = "CART_REDUCE_ITEM_QUANTITY_SUCCESS";
 export const CART_REDUCE_ITEM_QUANTITY_FAIL = "CART_REDUCE_ITEM_QUANTITY_FAIL";
+export const CART_INCREASE_ITEM_QUANTITY = "CART_INCREASE_ITEM_QUANTITY";
+export const CART_INCREASE_ITEM_QUANTITY_SUCCESS = "CART_INCREASE_ITEM_QUANTITY_SUCCESS";
+export const CART_INCREASE_ITEM_QUANTITY_FAIL = "CART_INCREASE_ITEM_QUANTITY_FAIL";
 
 const getAuthStateForCart = (getState) => {
   const { auth } = getState();
   const userId = auth.user ? auth.user.id : null;
   const token = auth.token;
   return { userId, token };
+};
+
+export const increaseCartItemQuantity = (userId, productId) => async (dispatch, getState) => {
+  try{
+    dispatch ({type: CART_INCREASE_ITEM_QUANTITY});
+    const { userId: userIdFromState, token } = getAuthStateForCart(getState);
+    const config = {
+      headers: {
+        "x-auth-token": token,
+      },
+    };
+    const { data } = await axiosInstance.post(
+      "/cart/increaseQuantity",
+      {
+        userId: userIdFromState,
+        productId,
+      },
+      config
+    );
+    dispatch({ type: CART_INCREASE_ITEM_QUANTITY_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: CART_INCREASE_ITEM_QUANTITY_FAIL, payload: error.message });
+  };
 };
 
 export const reduceCartItemQuantity = (userId, productId) => async (dispatch, getState) => {
