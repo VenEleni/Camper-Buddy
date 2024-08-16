@@ -1,21 +1,18 @@
 import React, { useEffect, useState } from "react";
 import EshopNavBar from "../components/EshopNavBar";
 import { useDispatch, useSelector } from "react-redux";
-// import axiosInstance from "../components/axiosInstance";
 import { fetchCartItems } from "../actions/cartActions";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { removeFromCart } from "../actions/cartActions";
+import { reduceCartItemQuantity} from "../actions/cartActions";
 
 const FetchCart = () => {
   const dispatch = useDispatch();
   const fetchCart = useSelector((state) => state.fetchCart);
   const auth = JSON.parse(localStorage.getItem("auth"));
   const userId = auth && auth.user ? auth.user.id : null;
-  const token = auth.token;
   const { loading, error, cartItems } = fetchCart || [];
 
-  // console.log("userId in FetchCart: ", userId);
-  // console.log("token in FetchCart: ", token);
   console.log("cartItems: ", cartItems);
 
   useEffect(() => {
@@ -39,6 +36,16 @@ const FetchCart = () => {
       console.log("User not authenticated for deleting from cart");
     }
   };
+  
+  const handleReduceQuantityFromCart = async (product) => {
+    try {
+      await dispatch(reduceCartItemQuantity(userId, product._id));
+      console.log("Product's quantity reduced successfully");
+      window.location.reload();
+    } catch (error) {
+      console.error("Error reducing product from cart:", error);
+    }
+  }
 
   return (
     <>
@@ -57,11 +64,14 @@ const FetchCart = () => {
               />
               <p>{item.product.title}</p>
               <p>{item.product.price} €</p>
+              
+              <i class="bi bi-dash-lg" onClick={() => handleReduceQuantityFromCart(item.product)}></i>
               <p>Quantity: {item.quantity}</p>
-              <button
-                className="bi bi-x-lg"
+              <i class="bi bi-plus-lg"></i>
+              <span
                 onClick={() => handleRemoveFromCart(item.product)}
-              ></button>
+              >Remove</span>
+
             </div>
           ))
         ) : (

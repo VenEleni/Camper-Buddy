@@ -9,6 +9,42 @@ export const FETCH_CART_ITEMS_FAIL = "FETCH_CART_ITEMS_FAIL";
 export const CART_REMOVE_ITEM = "CART_REMOVE_ITEM";
 export const CART_REMOVE_ITEM_SUCCESS = "CART_REMOVE_ITEM_SUCCESS";
 export const CART_REMOVE_ITEM_FAIL = "CART_REMOVE_ITEM_FAIL";
+export const CART_REDUCE_ITEM_QUANTITY = "CART_REDUCE_ITEM_QUANTITY";
+export const CART_REDUCE_ITEM_QUANTITY_SUCCESS = "CART_REDUCE_ITEM_QUANTITY_SUCCESS";
+export const CART_REDUCE_ITEM_QUANTITY_FAIL = "CART_REDUCE_ITEM_QUANTITY_FAIL";
+
+const getAuthStateForCart = (getState) => {
+  const { auth } = getState();
+  const userId = auth.user ? auth.user.id : null;
+  const token = auth.token;
+  return { userId, token };
+};
+
+export const reduceCartItemQuantity = (userId, productId) => async (dispatch, getState) => {
+  try{
+    dispatch ({type: CART_REDUCE_ITEM_QUANTITY});
+    // const { auth } = getState();
+    // const userIdFromState = auth.user ? auth.user.id : userId;
+    // const token = auth.token;
+    const { userId: userIdFromState, token } = getAuthStateForCart(getState);
+    const config = {
+      headers: {
+        "x-auth-token": token,
+      },
+    };
+    const { data } = await axiosInstance.post(
+      "/cart/reduceQuantity",
+      {
+        userId: userIdFromState,
+        productId,
+      },
+      config
+    );
+    dispatch({ type: CART_REDUCE_ITEM_QUANTITY_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: CART_REDUCE_ITEM_QUANTITY_FAIL, payload: error.message });
+  };
+};
 
 export const removeFromCart = (userId, productId) => async (dispatch, getState) => {
   try {
