@@ -3,7 +3,14 @@ import logo from "../assets/logo.png";
 import "./EshopNavBar.css"
 import 'bootstrap-icons/font/bootstrap-icons.css';
 
-const EshopNavBar = () => {
+const EshopNavBar = ({ onCategoryChange }) => {
+
+  const handleCategorySelect = (e) => {
+    const category = e.target.name;
+    const subcategory = e.target.value;
+    onCategoryChange(category, subcategory);
+  };
+
   return (
     <nav className="eshop_nav">
       <div className=" navbar-brand  eshop-logo">
@@ -12,7 +19,7 @@ const EshopNavBar = () => {
         </a>
       </div>
       <div>
-        <select id="Camping Tents" name="Camping Tents" required>
+        <select id="Camping Tents" name="Camping Tents" onChange={handleCategorySelect}>
           <option value="" disabled selected>
             Camping Tents
           </option>
@@ -22,7 +29,7 @@ const EshopNavBar = () => {
           <option value="Hammock Tents">Hammock Tents</option>
           <option value="Shade Tents">Shade Tents</option>
         </select>
-        <select id="Camping Essentials" name="Camping Essentials" required>
+        <select id="Camping Essentials" name="Camping Essentials" onChange={handleCategorySelect}>
           <option value="" disabled selected>
             Camping Essentials
           </option>
@@ -33,7 +40,7 @@ const EshopNavBar = () => {
             Cooking & Food Equipment
           </option>
         </select>
-        <select id="Accessories & Extras" name="Accessories & Extras" required>
+        <select id="Accessories & Extras" name="Accessories & Extras" onChange={handleCategorySelect}>
           <option value="" disabled selected>
           Accessories & Extras
           </option>

@@ -99,3 +99,18 @@ exports.updateProductById = async (req, res) => {
     res.status(500).json({ msg: "Error updating product" });
   }
 };
+
+exports.filterProducts = async (req, res) => {
+  const { category, subcategory } = req.query;
+  console.log("req.query is : ", req.query);
+  
+  let filter = {};
+  if (category) filter.category = category;
+  if (subcategory) filter.subcategory = subcategory;
+  try {
+    const products = await ProductModel.find(filter);
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(500).json({ msg: "Error filtering products" });
+  }
+};
