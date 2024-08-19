@@ -8,6 +8,7 @@ import removeFromCartReducer from './reducers/cartRemoveItemReducer';
 import cartReduceItemQuantityReducer from './reducers/cartReduceItemQuantityReducer';
 import cartIncreaseItemQuantityReducer from './reducers/cartIncreaseQuantityReducer';
 import fetchFilteredProductsReducer from './reducers/productsFilterFetchReducer';
+import cartClearCartReducer from './reducers/cartClearCartReducer';
 
 const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
     reduceQuantityFromCart: cartReduceItemQuantityReducer,
     increaseQuantityFromCart: cartIncreaseItemQuantityReducer,
     fetchFilteredProducts: fetchFilteredProductsReducer,
+    clearCart: cartClearCartReducer
   },
   devTools: process.env.NODE_ENV !== 'production',
 });
