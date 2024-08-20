@@ -4,7 +4,7 @@ export const SET_SHIPPING_INFO = 'SET_SHIPPING_INFO';
 export const SET_SHIPPING_INFO_SUCCESS = 'SET_SHIPPING_INFO_SUCCESS';
 export const SET_SHIPPING_INFO_FAIL = 'SET_SHIPPING_INFO_FAIL';
 
-export const setShippingInfo = (shippingData) => async (dispatch, getState) => {
+export const setShippingInfo = (orderData) => async (dispatch, getState) => {
   try {
     dispatch({ type: SET_SHIPPING_INFO });
     const { auth } = getState();
@@ -15,7 +15,7 @@ export const setShippingInfo = (shippingData) => async (dispatch, getState) => {
         "x-auth-token": token,
       },
     };
-    const { data } = await axiosInstance.post("/order/neworder", shippingData, config);
+    const { data } = await axiosInstance.post("/order/neworder", orderData, config);
     dispatch({
       type: SET_SHIPPING_INFO_SUCCESS,
       payload: data,

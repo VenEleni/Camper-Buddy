@@ -3,7 +3,7 @@ import { PaymentElement,  useStripe, useElements } from '@stripe/react-stripe-js
 import { useDispatch } from 'react-redux';
 import { clearCart } from '../actions/cartActions';
 
-const CheckoutForm = ({  setError, setSuccess }) => {
+const CheckoutForm = ({  setError, setSuccess , onPaymentSuccess}) => {
   const stripe = useStripe();
   const elements = useElements()
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const CheckoutForm = ({  setError, setSuccess }) => {
       const { error, paymentIntent } = await stripe.confirmPayment({
         elements,
         confirmParams: {
-          return_url: "https://example.com/order/123/complete",
+          return_url: "http://localhost:3000/ordersuccess",
         },
       });
 
@@ -36,6 +36,10 @@ const CheckoutForm = ({  setError, setSuccess }) => {
       } else if (paymentIntent.status === 'succeeded') {
         setSuccess(true);
         dispatch(clearCart());
+        setLoading(false);
+        onPaymentSuccess();
+      } else {
+        setError('Unexpected payment status. Please try again.');
         setLoading(false);
       }
     } catch (error) {

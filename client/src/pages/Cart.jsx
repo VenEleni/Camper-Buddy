@@ -65,8 +65,10 @@ const FetchCart = () => {
       </div>
 
       <div className="bg-red-300 top-36">
-        {cartItems && cartItems.length > 0 ? (
+        {cartItems && cartItems.length > 0 ?(
           cartItems.map((item) => (
+            
+
             <div key={item.product._id} className="flex">
               <img
                 className="w-24"
@@ -82,12 +84,17 @@ const FetchCart = () => {
               <span
                 onClick={() => handleRemoveFromCart(item.product)}
               >Remove</span>
-
             </div>
           ))
-        ) : (
+          
+        )  : (
           <p>Your cart is empty</p>
         )}
+        {cartItems && cartItems.length > 0 ? ( 
+  <a href="/checkout" className=" text-white font-bold py-2 px-4 rounded">Make your Order</a>
+) : (
+  <p>Your cart is empty</p>
+)}
       </div>
     </>
   );

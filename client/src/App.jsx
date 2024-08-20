@@ -15,6 +15,7 @@ import FetchCart from './pages/Cart'
 // import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import Checkout from './pages/CheckOut';
+import OrderSuccess from './components/OrderSuccess';
 
 // const stripePromise = loadStripe('pk_test_51Pp6A1DAYdBNDDpzWqzOXTTwS9zWqVFywfV3GgGIAqtZQDHx3iCwFAcRdxha3QYMLJOWLlRyopicdqhhDqjkOs4600Nd9YHySl');
 
@@ -29,6 +30,7 @@ function App() {
         <Route path='/eshop' element={<Eshop />}/>
         <Route path='/createproduct' element={<CreateProduct />}/>
         <Route path='/cart' element={<FetchCart />}/>
+        <Route path='/ordersuccess' element={<OrderSuccess />}/>
         <Route
             path='/checkout'
             element={<Checkout />}  // Remove <Elements> from here

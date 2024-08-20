@@ -11,6 +11,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {setShippingInfo} from '../actions/shippingActions';
+import { clearCart } from '../actions/cartActions';
 
 const stripePromise = loadStripe('pk_test_51Pp6A1DAYdBNDDpzWqzOXTTwS9zWqVFywfV3GgGIAqtZQDHx3iCwFAcRdxha3QYMLJOWLlRyopicdqhhDqjkOs4600Nd9YHySl');
 
@@ -20,6 +21,7 @@ const Checkout = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const [clientSecret, setClientSecret] = useState('');
+  const [showPaymentForm, setShowPaymentForm] = useState(false);
 
   const [shippingData, setShippingData] = useState({
     address: '',
@@ -37,9 +39,30 @@ const Checkout = () => {
     });
   };
 
-  const handleShippingSubmit = (e) => {
+  const handleShippingSubmit = async (e) => {
     e.preventDefault();
-    dispatch(setShippingInfo(shippingData)); // Dispatch the shipping data to the backend
+    const orderData = {
+      ...shippingData,
+      products: cartItems.map((item) => ({
+        product: item.product._id,
+        quantity: item.quantity,
+      })),
+    };
+    try {
+      await dispatch(setShippingInfo(orderData)); // Dispatch the order data to the backend
+      setShowPaymentForm(true); // Show the payment form
+    } catch (error) {
+      console.error("Error setting shipping info: ", error);
+    }
+  };
+
+  const handlePaymentSuccess = async () => {
+    try {
+      await dispatch(clearCart()); // Clear the cart after the order is placed
+      setSuccess(true);
+    } catch (error) {
+      console.error("Error placing order: ", error);
+    }
   };
 
   const cart = useSelector((state) => state.fetchCart);
@@ -81,23 +104,7 @@ const Checkout = () => {
  
   return (
     <div className='ml-96'>
-      <h2>Checkout</h2>
-      {console.log('Rendering with clientSecret:', clientSecret)}
-      {cartItems && cartItems.length > 0 ? (
-        <div>
-          <h3>Cart Items</h3>
-          <ul>
-            {cartItems.map((item) => (
-              <li key={item.product._id}>
-                {item.product.title} - {item.quantity} x {item.product.price} €
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <p>Your cart is empty</p>
-      )}
-
+{!showPaymentForm ? (
         <Form onSubmit={handleShippingSubmit}>
         <h5 className='mb-16'>Please fill the form with your shipping information</h5>
       <Row className="mb-3" >
@@ -161,8 +168,8 @@ const Checkout = () => {
         Check Out
       </Button>
     </Form>
-
-     {clientSecret ? (
+) : (
+     clientSecret ? (
          <Elements stripe={stripePromise} options={{ clientSecret }}>
            <CheckoutForm
              setError={setError}
@@ -171,6 +178,7 @@ const Checkout = () => {
        </Elements>
       ) : (
         <div>Loading...</div>
+      )
       )}
 
       {error && <p style={{ color: 'red' }}>{error}</p>}
