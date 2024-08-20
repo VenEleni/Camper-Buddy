@@ -49,21 +49,22 @@ const Checkout = () => {
       })),
     };
     try {
-      await dispatch(setShippingInfo(orderData)); // Dispatch the order data to the backend
+      await dispatch(setShippingInfo(orderData));
+      await dispatch(clearCart()); // Dispatch the order data to the backend
       setShowPaymentForm(true); // Show the payment form
     } catch (error) {
       console.error("Error setting shipping info: ", error);
     }
   };
 
-  const handlePaymentSuccess = async () => {
-    try {
-      await dispatch(clearCart()); // Clear the cart after the order is placed
-      setSuccess(true);
-    } catch (error) {
-      console.error("Error placing order: ", error);
-    }
-  };
+  // const handlePaymentSuccess = async () => {
+  //   try {
+  //     await dispatch(clearCart()); // Clear the cart after the order is placed
+  //     setSuccess(true);
+  //   } catch (error) {
+  //     console.error("Error placing order: ", error);
+  //   }
+  // };
 
   const cart = useSelector((state) => state.fetchCart);
   const { cartItems } = cart;

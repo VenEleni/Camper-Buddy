@@ -10,6 +10,8 @@ import cartIncreaseItemQuantityReducer from './reducers/cartIncreaseQuantityRedu
 import fetchFilteredProductsReducer from './reducers/productsFilterFetchReducer';
 import cartClearCartReducer from './reducers/cartClearCartReducer';
 import shippingSetInfoReducer from './reducers/shippingSetInfoReducer';
+import ordersFetchReducer from './reducers/ordersFetchReducer';
+import orderUpdateStatusReducer from './reducers/orderUpdateStatusReducer';
 
 const store = configureStore({
   reducer: {
@@ -24,6 +26,8 @@ const store = configureStore({
     fetchFilteredProducts: fetchFilteredProductsReducer,
     clearCart: cartClearCartReducer,
     shippingSetInfo: shippingSetInfoReducer,
+    ordersFetch: ordersFetchReducer,
+    updateOrderStatus: orderUpdateStatusReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

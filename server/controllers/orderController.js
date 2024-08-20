@@ -32,11 +32,11 @@ exports.createNewOrder = async (req, res) => {
 
 exports.updateOrderById = async (req, res) => {
   const id = req.params.id;
-  const { user, products, address, phone, email, fullName, country, postalCode } = req.body;
+  const { status } = req.body; // Only update the status
   try {
     const updatedOrder = await OrderModel.findByIdAndUpdate(
       id,
-      { user, products, address, phone, email, fullName, country, postalCode },
+      { status },
       { new: true }
     );
     res.status(200).json(updatedOrder);

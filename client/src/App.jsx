@@ -16,6 +16,7 @@ import FetchCart from './pages/Cart'
 import {loadStripe} from '@stripe/stripe-js';
 import Checkout from './pages/CheckOut';
 import OrderSuccess from './components/OrderSuccess';
+import Orders from './pages/Orders';
 
 // const stripePromise = loadStripe('pk_test_51Pp6A1DAYdBNDDpzWqzOXTTwS9zWqVFywfV3GgGIAqtZQDHx3iCwFAcRdxha3QYMLJOWLlRyopicdqhhDqjkOs4600Nd9YHySl');
 
@@ -35,6 +36,7 @@ function App() {
             path='/checkout'
             element={<Checkout />}  // Remove <Elements> from here
           />
+        <Route path='/orders' element={<Orders />}/>
       </Routes>
     </Router>
     </Provider>
