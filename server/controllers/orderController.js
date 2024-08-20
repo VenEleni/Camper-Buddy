@@ -1,4 +1,5 @@
 const OrderModel = require("../models/orderSchema");
+const sendEmail = require("../mailer");
 
 exports.getAllOrders = async (req, res) => {
   try {
@@ -24,6 +25,7 @@ exports.createNewOrder = async (req, res) => {
       postalCode: postalCode
     });
     await newOrder.save();
+    sendEmail(email, 'Order Confirmation', `Your order has been placed successfully. Order ID: ${newOrder._id}`);
     res.status(200).json(newOrder);
   } catch (error) {
     res.status(500).json({ msg: "Error creating order" });
@@ -39,6 +41,9 @@ exports.updateOrderById = async (req, res) => {
       { status },
       { new: true }
     );
+    console.log("updatedOrder is", updatedOrder);
+    
+    sendEmail(updatedOrder.email, 'Order Status Updated', `Your order status has been updated to ${status}`);
     res.status(200).json(updatedOrder);
   } catch (error) {
     res.status(500).json({ msg: "Error Updating Order" });
