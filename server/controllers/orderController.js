@@ -10,7 +10,7 @@ exports.getAllOrders = async (req, res) => {
 };
 
 exports.createNewOrder = async (req, res) => {
-  const { user, products, address, phone, email, fullName, total } = req.body;
+  const { user, products, address, phone, email, fullName, total, country, postalCode } = req.body;
   try {
     const newOrder = new OrderModel({
       user: user,
@@ -20,6 +20,8 @@ exports.createNewOrder = async (req, res) => {
       email: email,
       fullName: fullName,
       total: total,
+      country: country,
+      postalCode: postalCode
     });
     await newOrder.save();
     res.status(200).json(newOrder);

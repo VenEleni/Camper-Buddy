@@ -11,6 +11,7 @@ const authRoutes = require('./routes/authRoute')
 const productRoutes= require('./routes/productRoute')
 const cartRoutes = require('./routes/cartRoute')
 const stripeRoutes = require('./routes/stripeRoute')
+const orderRoutes = require('./routes/orderRoute')
 
 
 dotenv.config();
@@ -22,7 +23,7 @@ app.use(cors({
     credentials: true
 }));
 
-
+app.use('/order', orderRoutes)
 app.use('/auth', authRoutes);
 app.use("/user", userRoutes);
 app.use('/product', productRoutes);

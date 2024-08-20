@@ -63,8 +63,7 @@ export const fetchProducts = () => async (dispatch) => {
   }
 };
 
-export const fetchProductsByCategory =
-  (category, subcategory) => async (dispatch) => {
+export const fetchProductsByCategory = (category, subcategory) => async (dispatch) => {
     try {
       dispatch({ type: FETCH_FILTERED_PRODUCTS });
       const query = new URLSearchParams({category, subcategory }).toString();
