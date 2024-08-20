@@ -10,7 +10,7 @@ const initialState = {
     error: null,
 };
 
-export const ShippingSetInfoReducer = (state = initialState, action) => {
+export const shippingSetInfoReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_SHIPPING_INFO:
             return { ...state, loading: true };
@@ -23,4 +23,4 @@ export const ShippingSetInfoReducer = (state = initialState, action) => {
     }
 };
 
-export default ShippingSetInfoReducer;
+export default shippingSetInfoReducer;

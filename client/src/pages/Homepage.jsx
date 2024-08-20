@@ -8,7 +8,7 @@ function Homepage() {
     <div className="homeBody">
     <NavBar/>
       <div  className="homepageContainer" >
-        <h3>
+        <h3 className="homeQuote">
           Pack light, <br></br>
           travel far, <br></br>
           and explore the wonders of the world

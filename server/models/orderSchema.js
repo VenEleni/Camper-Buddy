@@ -32,7 +32,7 @@ const OrderSchema = new mongoose.Schema({
     required: true,
   },
   postalCode: {
-    type: Number,
+    type: String,
     required: true
   },
   status: {
@@ -51,11 +51,7 @@ const OrderSchema = new mongoose.Schema({
   fullName: {
     type: String,
     required: true,
-  },
-  total: {
-    type: Number,
-    required: true
-  },
+  }
 });
 
 const Order = mongoose.model("Order", OrderSchema);

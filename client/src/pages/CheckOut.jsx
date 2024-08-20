@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { ElementsConsumer } from '@stripe/react-stripe-js';
 import { Elements  } from '@stripe/react-stripe-js';
 import { fetchCartItems } from '../actions/cartActions';
 import axiosInstance from '../components/axiosInstance';
 import CheckoutForm from './CheckoutForm';
 import { loadStripe } from '@stripe/stripe-js';
+import Button from 'react-bootstrap/Button';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import {setShippingInfo} from '../actions/shippingActions';
 
 const stripePromise = loadStripe('pk_test_51Pp6A1DAYdBNDDpzWqzOXTTwS9zWqVFywfV3GgGIAqtZQDHx3iCwFAcRdxha3QYMLJOWLlRyopicdqhhDqjkOs4600Nd9YHySl');
 
@@ -15,6 +20,27 @@ const Checkout = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const [clientSecret, setClientSecret] = useState('');
+
+  const [shippingData, setShippingData] = useState({
+    address: '',
+    country: '',
+    postalCode: '',
+    phone: '',
+    email: '',
+    fullName: ''
+  });
+
+  const handleShippingChange = (e) => {
+    setShippingData({
+      ...shippingData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleShippingSubmit = (e) => {
+    e.preventDefault();
+    dispatch(setShippingInfo(shippingData)); // Dispatch the shipping data to the backend
+  };
 
   const cart = useSelector((state) => state.fetchCart);
   const { cartItems } = cart;
@@ -54,7 +80,7 @@ const Checkout = () => {
 
  
   return (
-    <div>
+    <div className='ml-96'>
       <h2>Checkout</h2>
       {console.log('Rendering with clientSecret:', clientSecret)}
       {cartItems && cartItems.length > 0 ? (
@@ -71,6 +97,70 @@ const Checkout = () => {
       ) : (
         <p>Your cart is empty</p>
       )}
+
+        <Form onSubmit={handleShippingSubmit}>
+        <h5 className='mb-16'>Please fill the form with your shipping information</h5>
+      <Row className="mb-3" >
+        <Form.Group as={Col} controlId="formGridEmail">
+          <Form.Label>Email</Form.Label>
+          <Form.Control type="email" placeholder="Enter email" name="email"
+            value={shippingData.email}
+            onChange={handleShippingChange}
+            required />
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridPhoneNumber">
+          <Form.Label>Phone Number</Form.Label>
+          <Form.Control type="number" placeholder="Phone Number" name="phone"
+            value={shippingData.phone}
+            onChange={handleShippingChange}
+            required />
+        </Form.Group>
+      </Row>
+
+      <Row className="mb-3">
+      <Form.Group as={Col} className="mb-3" controlId="formGridFullName">
+        <Form.Label>Full Name</Form.Label>
+        <Form.Control placeholder="Enter your full name"  type="text"
+            name="fullName"
+            value={shippingData.fullName}
+            onChange={handleShippingChange}
+            required />
+      </Form.Group>
+
+      <Form.Group as={Col} className="mb-3" controlId="formGridAddress">
+        <Form.Label>Address</Form.Label>
+        <Form.Control placeholder="1234 Main St"  type="text"
+            name="address"
+            value={shippingData.address}
+            onChange={handleShippingChange}
+            required />
+      </Form.Group>
+      </Row>
+
+      <Row className="mb-3">
+        <Form.Group as={Col} controlId="formGridCountry">
+          <Form.Label>Country</Form.Label>
+          <Form.Control  type="text"
+            name="country"
+            value={shippingData.country}
+            onChange={handleShippingChange}
+            required/>
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridPostalCode">
+          <Form.Label>Postal Code</Form.Label>
+          <Form.Control type="text" name="postalCode"
+            value={shippingData.postalCode}
+            onChange={handleShippingChange}
+            required/>
+        </Form.Group>
+      </Row>
+
+      <Button variant="primary" type="submit">
+        Check Out
+      </Button>
+    </Form>
 
      {clientSecret ? (
          <Elements stripe={stripePromise} options={{ clientSecret }}>

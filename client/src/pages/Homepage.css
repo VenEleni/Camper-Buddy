@@ -13,8 +13,8 @@
     left: 150px;
 }
 
-h3 {
-    font-family: "Julius Sans One", sans-serif;
-    color: white;
-    line-height: 55px;
+.homeQuote {
+    font-family: "Julius Sans One", sans-serif ;
+    color: white !important;
+    line-height: 55px !important;
   }

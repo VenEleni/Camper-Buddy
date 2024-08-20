@@ -10,16 +10,16 @@ exports.getAllOrders = async (req, res) => {
 };
 
 exports.createNewOrder = async (req, res) => {
-  const { user, products, address, phone, email, fullName, total, country, postalCode } = req.body;
+  const {products, address, phone, email, fullName, country, postalCode } = req.body;
+  const userId = req.user.id;
   try {
     const newOrder = new OrderModel({
-      user: user,
+      user: userId,
       products: products,
       address: address,
       phone: phone,
       email: email,
       fullName: fullName,
-      total: total,
       country: country,
       postalCode: postalCode
     });
@@ -32,11 +32,11 @@ exports.createNewOrder = async (req, res) => {
 
 exports.updateOrderById = async (req, res) => {
   const id = req.params.id;
-  const { user, products, address, phone, email, fullName, total } = req.body;
+  const { user, products, address, phone, email, fullName, country, postalCode } = req.body;
   try {
     const updatedOrder = await OrderModel.findByIdAndUpdate(
       id,
-      { user, products, address, phone, email, fullName, total },
+      { user, products, address, phone, email, fullName, country, postalCode },
       { new: true }
     );
     res.status(200).json(updatedOrder);
