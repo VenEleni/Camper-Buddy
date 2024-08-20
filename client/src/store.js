@@ -12,6 +12,8 @@ import cartClearCartReducer from './reducers/cartClearCartReducer';
 import shippingSetInfoReducer from './reducers/shippingSetInfoReducer';
 import ordersFetchReducer from './reducers/ordersFetchReducer';
 import orderUpdateStatusReducer from './reducers/orderUpdateStatusReducer';
+import reviewCreateReducer from './reducers/reviewCreateReducer';
+import reviewFetchReducer from './reducers/reviewFetchReducer';
 
 const store = configureStore({
   reducer: {
@@ -28,6 +30,8 @@ const store = configureStore({
     shippingSetInfo: shippingSetInfoReducer,
     ordersFetch: ordersFetchReducer,
     updateOrderStatus: orderUpdateStatusReducer,
+    reviewCreate: reviewCreateReducer,
+    reviewFetch: reviewFetchReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });
