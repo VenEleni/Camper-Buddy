@@ -1,13 +1,19 @@
-import React from 'react';
-import { PaymentElement } from '@stripe/react-stripe-js';
+import React, { useState } from 'react';
+import { PaymentElement,  useStripe, useElements } from '@stripe/react-stripe-js';
 import { useDispatch } from 'react-redux';
 import { clearCart } from '../actions/cartActions';
 
-const CheckoutForm = ({ stripe, elements, setLoading, setError, setSuccess }) => {
+const CheckoutForm = ({  setError, setSuccess }) => {
+  const stripe = useStripe();
+  const elements = useElements()
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    console.log('Stripe:', stripe);
+    console.log('Elements:', elements);
 
     if (!stripe || !elements) {
       setError('Stripe has not loaded yet. Please try again later.');
@@ -41,8 +47,8 @@ const CheckoutForm = ({ stripe, elements, setLoading, setError, setSuccess }) =>
   return (
     <form onSubmit={handleSubmit}>
       <PaymentElement />
-      <button type="submit" disabled={!stripe || setLoading}>
-        {setLoading ? 'Processing...' : 'Pay'}
+      <button type="submit" disabled={loading || !stripe || !elements}>
+      {loading ? 'Processing...' : 'Pay'}
       </button>
     </form>
   );

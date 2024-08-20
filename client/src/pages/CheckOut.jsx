@@ -75,11 +75,9 @@ const Checkout = () => {
      {clientSecret ? (
          <Elements stripe={stripePromise} options={{ clientSecret }}>
            <CheckoutForm
-             setLoading={setLoading}
              setError={setError}
              setSuccess={() => setSuccess(true)}
            />
-         )}
        </Elements>
       ) : (
         <div>Loading...</div>
