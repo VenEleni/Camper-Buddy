@@ -12,6 +12,7 @@ const productRoutes= require('./routes/productRoute')
 const cartRoutes = require('./routes/cartRoute')
 const stripeRoutes = require('./routes/stripeRoute')
 const orderRoutes = require('./routes/orderRoute')
+const reviewsRoutes = require('./routes/reviewRoute')
 
 
 dotenv.config();
@@ -29,6 +30,7 @@ app.use("/user", userRoutes);
 app.use('/product', productRoutes);
 app.use('/cart', cartRoutes)
 app.use("/api", stripeRoutes)
+app.use('/review', reviewsRoutes)
 
 app.get("/", (req, res) => {
     res.send('<a href = "/auth/google">Click on me</a>')
