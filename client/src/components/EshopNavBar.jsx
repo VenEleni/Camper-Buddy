@@ -20,7 +20,7 @@ const EshopNavBar = ({ onCategoryChange }) => {
       </div>
       <div>
         <select id="Camping Tents" name="Camping Tents" onChange={handleCategorySelect}>
-          <option value="" disabled selected>
+          <option value="Camping Tents" >
             Camping Tents
           </option>
           <option value="Winter Tents">Winter Tents</option>
@@ -30,7 +30,7 @@ const EshopNavBar = ({ onCategoryChange }) => {
           <option value="Shade Tents">Shade Tents</option>
         </select>
         <select id="Camping Essentials" name="Camping Essentials" onChange={handleCategorySelect}>
-          <option value="" disabled selected>
+          <option value="Camping Essentials">
             Camping Essentials
           </option>
           <option value="Sleeping Equipment">Sleeping Equipment</option>
@@ -41,7 +41,7 @@ const EshopNavBar = ({ onCategoryChange }) => {
           </option>
         </select>
         <select id="Accessories & Extras" name="Accessories & Extras" onChange={handleCategorySelect}>
-          <option value="" disabled selected>
+          <option value="Accessories & Extras">
           Accessories & Extras
           </option>
           <option value="Personal Care">Personal Care</option>

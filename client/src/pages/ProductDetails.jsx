@@ -50,6 +50,8 @@ const ProductDetails = ({ product, onBack }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const reviewData = { rating, comment };
+    console.log("reviewData is : ", reviewData);
+    
     try {
         await dispatch(createReview(product._id, reviewData));
         console.log("Review submitted successfully:", reviewData);

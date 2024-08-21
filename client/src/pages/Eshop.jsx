@@ -57,7 +57,7 @@ const Eshop = () => {
       <div className="flex top-36 eshop_products">
         {productsToDisplay.map((product) => (
           <div
-            key={product.id}
+            key={product._id}
             className=" flex flex-col items-center mx-7 eshop_product"
           >
             <img className="w-52" src={product.image} alt={product.name} onClick={() => setSelectedProduct(product)} />

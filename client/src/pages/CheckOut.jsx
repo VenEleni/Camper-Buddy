@@ -10,8 +10,7 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {setShippingInfo} from '../actions/shippingActions';
-import { clearCart } from '../actions/cartActions';
+// import {setShippingInfo} from '../actions/shippingActions';
 
 const stripePromise = loadStripe('pk_test_51Pp6A1DAYdBNDDpzWqzOXTTwS9zWqVFywfV3GgGIAqtZQDHx3iCwFAcRdxha3QYMLJOWLlRyopicdqhhDqjkOs4600Nd9YHySl');
 
@@ -41,30 +40,8 @@ const Checkout = () => {
 
   const handleShippingSubmit = async (e) => {
     e.preventDefault();
-    const orderData = {
-      ...shippingData,
-      products: cartItems.map((item) => ({
-        product: item.product._id,
-        quantity: item.quantity,
-      })),
-    };
-    try {
-      await dispatch(setShippingInfo(orderData));
-      await dispatch(clearCart()); // Dispatch the order data to the backend
-      setShowPaymentForm(true); // Show the payment form
-    } catch (error) {
-      console.error("Error setting shipping info: ", error);
-    }
+    setShowPaymentForm(true); // Show the payment form
   };
-
-  // const handlePaymentSuccess = async () => {
-  //   try {
-  //     await dispatch(clearCart()); // Clear the cart after the order is placed
-  //     setSuccess(true);
-  //   } catch (error) {
-  //     console.error("Error placing order: ", error);
-  //   }
-  // };
 
   const cart = useSelector((state) => state.fetchCart);
   const { cartItems } = cart;
@@ -101,6 +78,14 @@ const Checkout = () => {
     return <div>Loading...</div>;
   }
 
+
+  const orderData = {
+    ...shippingData,
+    products: cartItems.map((item) => ({
+      product: item.product._id,
+      quantity: item.quantity,
+    })),
+  };
 
  
   return (
@@ -175,6 +160,7 @@ const Checkout = () => {
            <CheckoutForm
              setError={setError}
              setSuccess={() => setSuccess(true)}
+             orderData={orderData} // Pass the order data here
            />
        </Elements>
       ) : (

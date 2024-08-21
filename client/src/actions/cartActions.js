@@ -21,6 +21,7 @@ export const CART_CLEAR_FAIL = "CART_CLEAR_FAIL";
 
 export const clearCart = () => async (dispatch, getState) => {
   try {
+    console.log("I'm in the clearCart action");    
     dispatch({ type: CART_CLEAR });
     const { auth } = getState();
     const token = auth.token;
@@ -63,6 +64,7 @@ export const increaseCartItemQuantity = (userId, productId) => async (dispatch, 
         },
         config
       );
+      console.log("Received response from increase quantity", data);
       dispatch({ type: CART_INCREASE_ITEM_QUANTITY_SUCCESS, payload: data });
     } catch (error) {
       dispatch({

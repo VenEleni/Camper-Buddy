@@ -18,7 +18,12 @@ const FetchCart = () => {
 
   useEffect(() => {
     dispatch(fetchCartItems());
-  }, []);
+  }, [dispatch]);
+  
+  useEffect(() => {
+    // This effect will run whenever cartItems changes
+    console.log("cartItems changed: ", cartItems);
+  }, [cartItems]);
 
   const handleRemoveFromCart = async (product) => {
     if (userId) {
@@ -29,7 +34,7 @@ const FetchCart = () => {
       try {
         dispatch(removeFromCart(userId, product._id));
         console.log("Product removed from cart successfully");
-        window.location.reload();
+        // window.location.reload();
       } catch (error) {
         console.error("Error removing product from cart:", error);
       }
@@ -42,7 +47,7 @@ const FetchCart = () => {
     try {
       dispatch(reduceCartItemQuantity(userId, product._id));
       console.log("Product's quantity reduced successfully");
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error("Error reducing product from cart:", error);
     }
@@ -52,7 +57,7 @@ const FetchCart = () => {
     try {
       dispatch(increaseCartItemQuantity(userId, product._id));
       console.log("Product's quantity increased successfully");
-      window.location.reload();
+      // window.location.reload();
     } catch (error) {
       console.error("Error increasing product from cart:", error);
     }
@@ -78,9 +83,9 @@ const FetchCart = () => {
               <p>{item.product.title}</p>
               <p>{item.product.price} €</p>
               
-              <i class="bi bi-dash-lg" onClick={() => handleReduceQuantityFromCart(item.product)}></i>
+              <i className="bi bi-dash-lg" onClick={() => handleReduceQuantityFromCart(item.product)}></i>
               <p>Quantity: {item.quantity}</p>
-              <i class="bi bi-plus-lg" onClick={()=> handleIncreaseQuantityFromCart(item.product)}></i>
+              <i className="bi bi-plus-lg" onClick={()=> handleIncreaseQuantityFromCart(item.product)}></i>
               <span
                 onClick={() => handleRemoveFromCart(item.product)}
               >Remove</span>

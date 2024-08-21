@@ -129,4 +129,4 @@ ProductSchema.pre("save", function (next) {
 const Product = mongoose.model("Product", ProductSchema);
 const Review = mongoose.model("Review", ReviewSchema);
 
-module.exports = Product;
+module.exports = Product, Review;

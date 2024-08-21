@@ -43,7 +43,7 @@ export const createReview =
   export const fetchReviews = (productId) => async (dispatch) => {
     try {
       dispatch({ type: FETCH_REVIEWS });
-      const { data } = await axiosInstance.get(`/reviews/${productId}/reviews`);
+      const { data } = await axiosInstance.get(`/review/${productId}/reviews`);
       dispatch({ type: FETCH_REVIEWS_SUCCESS, payload: data });
     } catch (error) {
       dispatch({ type: FETCH_REVIEWS_FAIL, payload: error.response.data.message });

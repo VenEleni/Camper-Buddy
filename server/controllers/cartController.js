@@ -18,10 +18,15 @@ exports.addToCart = async (req, res) => {
     const cartItem = user.cart.find(
       (item) => item.product._id.toString() === productId
     );
-    if (cartItem) {
+    console.log("cartItem from addToCart Controller: ", cartItem);
+    console.log("product.stock from addToCart Controller: ", product.stock);
+    
+    if (cartItem && (cartItem.quantity < product.stock)) {
       cartItem.quantity += 1;
-    } else {
+    } else if (!cartItem && (0 < product.stock)) {
       user.cart.push({ product: productId, quantity: 1 });
+    } else {
+      res.status(400).json({ message: "Not enough stock" });
     }
     await user.save();
     res.status(200).json({ message: "Item added to cart", cart: user.cart });
@@ -34,6 +39,8 @@ exports.addToCart = async (req, res) => {
 exports.increaseQuantity = async (req, res) => {
   const { userId, productId } = req.body;
   try {
+    console.log("userId and productId from increaseQuantity Controller: ", userId, productId);
+    
     const user = await User.findById(userId);
     const product = await Product.findById(productId);
     if (!user || !product) {
@@ -45,8 +52,15 @@ exports.increaseQuantity = async (req, res) => {
     if (!cartItem) {
       return res.status(404).json({ message: "Product not found in cart" });
     }
-    cartItem.quantity += 1;
-    await user.save();
+    console.log("cartItem.quantity from increaseQuantity Controller: ", cartItem.quantity);
+    console.log("product.stock from increaseQuantity Controller: ", product.stock);
+    if (cartItem.quantity < product.stock) {
+      cartItem.quantity += 1;
+      await user.save();
+      res.status(200).json({ message: "Item increased quantity to cart", cart: user.cart });
+    } else {
+      res.status(400).json({ message: "Not enough stock" });
+    } 
   } catch (error) {
     console.log(error);
     res.status(500).json({ msg: "server error" });
