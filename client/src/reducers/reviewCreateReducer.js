@@ -16,9 +16,9 @@ import {
       case CREATE_REVIEW:
         return { ...state, loading: true };
       case CREATE_REVIEW_SUCCESS:
-        return { ...state, loading: false, review: action.payload };
+        return { loading: false, review: action.payload, error: null};
       case CREATE_REVIEW_FAIL:
-        return { ...state, loading: false, error: action.payload };
+        return {  loading: false, error: action.payload, review: {} };
       default:
         return state;
     }

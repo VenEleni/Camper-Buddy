@@ -62,11 +62,11 @@ exports.getUserById = async (req, res) => {
   console.log(req.params.id);
   const id = req.params.id;
   try {
-    const user = await UserModel.findById(id);
+    const user = await UserModel.findById(id).select('username');;
     if (!user) {
       return res.status(404).json({ msg: "User not found" });
     }
-    res.json(user);
+    res.status(200).json(user);
   } catch (error) {
     res.status(500).json({ message: "Error fetching user" });
   }

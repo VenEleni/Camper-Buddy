@@ -1,12 +1,23 @@
 import axiosInstance from '../components/axiosInstance';
 import { jwtDecode } from 'jwt-decode'
 
-// Action Types
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const GET_USER_BY_ID = 'GET_USER';
+export const GET_USER_BY_ID_SUCCESS = 'GET_USER_SUCCESS';
+export const GET_USER_BY_ID_FAIL = 'GET_USER_FAIL';
 
+export const getUserById = (userId) => async (dispatch) => {
+  try {
+    dispatch({ type: GET_USER_BY_ID });
+    const { data } = await axiosInstance.get(`/user/getuser/${userId}`);
+    dispatch({ type: GET_USER_BY_ID_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: GET_USER_BY_ID_FAIL, payload: error.response.data.message });
+  }
+}
 
 export const register = (userData) => async (dispatch) => {
   try {

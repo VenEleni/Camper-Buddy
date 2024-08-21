@@ -13,19 +13,26 @@ export const createReview =
       dispatch({ type: CREATE_REVIEW });
       const { auth } = getState();
       const token = auth.token;
+      console.log("token is : ", token);
+      
       const config = {
         headers: {
           "Content-Type": "application/json",
           "x-auth-token": token,
         },
       };
+      console.log("config is : ", config);
+      console.log("reviewData is : ", reviewData);
+      
       const { data } = await axiosInstance.post(
-        `/reviews/${productId}/addreview`,
+        `/review/${productId}/addreview`,
         reviewData,
         config
       );
-      dispatch({ type: CREATE_REVIEW_SUCCESS, payload: data });
+      dispatch({ type: CREATE_REVIEW_SUCCESS, payload: data.review  });
     } catch (error) {
+        console.log("error in CREATE_REVIEW is : ", error);
+        
       dispatch({
         type: CREATE_REVIEW_FAIL,
         payload: error.response.data.message,

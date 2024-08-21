@@ -14,6 +14,7 @@ import ordersFetchReducer from './reducers/ordersFetchReducer';
 import orderUpdateStatusReducer from './reducers/orderUpdateStatusReducer';
 import reviewCreateReducer from './reducers/reviewCreateReducer';
 import reviewFetchReducer from './reducers/reviewFetchReducer';
+import userFetchByIdReducer from './reducers/userFetchByIdReducer';
 
 const store = configureStore({
   reducer: {
@@ -32,6 +33,7 @@ const store = configureStore({
     updateOrderStatus: orderUpdateStatusReducer,
     reviewCreate: reviewCreateReducer,
     reviewFetch: reviewFetchReducer,
+    userFetchById: userFetchByIdReducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
 });
