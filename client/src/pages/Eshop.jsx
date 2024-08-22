@@ -18,6 +18,7 @@ const Eshop = () => {
   const { loading: loadingFiltered, error: errorFiltered, filteredProducts = [] } = fetchFilteredProducts || [];
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(10); 
+  const [selectedCategory, setSelectedCategory] = useState("All products");
   
   console.log("auth state in eshop page", auth);
 
@@ -28,6 +29,7 @@ const Eshop = () => {
 
   const handleCategoryChange = (category, subcategory) => {
     console.log('Category change:', category, subcategory);
+    setSelectedCategory(subcategory);
     dispatch(fetchProductsByCategory(category, subcategory));
     
     
@@ -66,6 +68,9 @@ const Eshop = () => {
     <div>
       <img src={eshop_img} alt='eshop' className='eshop_banner'/>
     </div>
+    <div className="category-title flex justify-center">
+        <h3 className='text-black top-5'>{selectedCategory}</h3>
+      </div>
 
     {selectedProduct ? (
       <ProductDetails
@@ -74,7 +79,7 @@ const Eshop = () => {
       />
     ) : (
       <>
-        <div className="flex top-36 eshop_products">
+        <div className="flex top-24 eshop_products">
           {currentProducts.map((product) => (
             <div
               key={product._id}
