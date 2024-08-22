@@ -10,11 +10,12 @@ export const FETCH_FILTERED_PRODUCTS = "FETCH_FILTERED_PRODUCTS";
 export const FETCH_FILTERED_PRODUCTS_SUCCESS = "FETCH_FILTERED_PRODUCTS_SUCCESS";
 export const FETCH_FILTERED_PRODUCTS_FAIL = "FETCH_FILTERED_PRODUCTS_FAIL";
 
-export const createProduct = (productData) => async (dispatch) => {
+export const createProduct = (productData) => async (dispatch,getState) => {
   try {
     dispatch({ type: CREATE_PRODUCT_REQUEST });
 
-    const token = localStorage.getItem("token"); // Get token from localStorage
+    const { auth } = getState();
+    const token = auth.token;
 
     const config = {
       headers: {

@@ -11,6 +11,7 @@ const ProductDetails = ({ product, onBack }) => {
     const [hover, setHover] = useState(null);
     const [totalStars, setTotalStars] = useState(5);
     const [comment, setComment] = useState("");
+    const [averageRating, setAverageRating] = useState(0);
 
 
   const auth = JSON.parse(localStorage.getItem('auth'));
@@ -21,6 +22,17 @@ const ProductDetails = ({ product, onBack }) => {
     console.log("product._id is : ", product._id);
     
   }, [dispatch, product._id]);
+
+  useEffect(() => {
+    if (product.reviews && product.reviews.length > 0) {
+      const sum = product.reviews.reduce(
+        (acc, review) => acc + review.rating,
+        0
+      );
+      const avg = sum / product.reviews.length;
+      setAverageRating(avg);
+    }
+  }, [product.reviews]);
 
 // const handleChange = (e) => {
 //   console.log("e.target.value is : ", e.target.value);
@@ -62,13 +74,14 @@ const ProductDetails = ({ product, onBack }) => {
 
   return (
     <>
-    <div className="grid grid-cols-2 top-36">
-      <img className="w-96 col-span-6 ml-40 mt-16" src={product.image} alt={product.name} />
+    <div className="grid grid-cols-2 top-20">
+      <img className="w-96 col-span-6 ml-40 " src={product.image} alt={product.name} />
       <div className="col-span-6 ">
         <h2>{product.title}</h2>
 
         <p>{product.description}</p>
         <p>{product.price} €</p>
+        <p>Average Rating: {averageRating.toFixed(0)} / 5</p>
         <button onClick={onBack}>Go Back</button>
         <button onClick={handleAddToCart} >Add to cart </button>
       </div>

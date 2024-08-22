@@ -43,8 +43,8 @@ const Checkout = () => {
     setShowPaymentForm(true); // Show the payment form
   };
 
-  const cart = useSelector((state) => state.fetchCart);
-  const { cartItems } = cart;
+  const cartState = useSelector((state) => state.cartReducer);
+  const { cartItems } = cartState;
 
   useEffect(() => {
     dispatch(fetchCartItems());

@@ -4,6 +4,8 @@ import "./Eshop.css";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts, fetchProductsByCategory } from "../actions/productActions";
 import ProductDetails from './ProductDetails'
+import eshop_img from '../assets/eshop_img.jpeg';
+import Pagination from 'react-bootstrap/Pagination';
 
 const Eshop = () => {
   const dispatch = useDispatch();
@@ -14,6 +16,8 @@ const Eshop = () => {
   // const state = useSelector((state) => state);
   const { loading, error, products } = productsFetch  || [];
   const { loading: loadingFiltered, error: errorFiltered, filteredProducts = [] } = fetchFilteredProducts || [];
+  const [currentPage, setCurrentPage] = useState(1);
+  const [productsPerPage] = useState(10); 
   
   console.log("auth state in eshop page", auth);
 
@@ -40,39 +44,65 @@ const Eshop = () => {
     }
   }, [filteredProducts, products]);
 
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = productsToDisplay.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  const pageNumbers = [];
+  for (let i = 1; i <= Math.ceil(productsToDisplay.length / productsPerPage); i++) {
+    pageNumbers.push(i);
+  }
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   console.log("productsToDisplay", productsToDisplay);
 
 
   return (
     <div className="eshop_container">
-      <EshopNavBar onCategoryChange={handleCategoryChange} />
-
-      {selectedProduct ? (
-        <ProductDetails
-          product={selectedProduct}
-          onBack={() => setSelectedProduct(null)} // use onBack prop to come back in this page
-        />
-      ) : (
-
-      <div className="flex top-36 eshop_products">
-        {productsToDisplay.map((product) => (
-          <div
-            key={product._id}
-            className=" flex flex-col items-center mx-7 eshop_product"
-          >
-            <img className="w-52" src={product.image} alt={product.name} onClick={() => setSelectedProduct(product)} />
-            <p>{product.title}</p>
-            <p>{product.price} €</p>
-            <a href="">
-              <button className="eshop_button">Buy Now</button>
-              See More..
-            </a>
-          </div>
-        ))}
-      </div>
-      )}
+    <EshopNavBar onCategoryChange={handleCategoryChange} />
+    <div>
+      <img src={eshop_img} alt='eshop' className='eshop_banner'/>
     </div>
-  );
+
+    {selectedProduct ? (
+      <ProductDetails
+        product={selectedProduct}
+        onBack={() => setSelectedProduct(null)}
+      />
+    ) : (
+      <>
+        <div className="flex top-36 eshop_products">
+          {currentProducts.map((product) => (
+            <div
+              key={product._id}
+              className="flex flex-col items-center mx-7 eshop_product"
+            >
+              <div className="product-image-wrapper">
+                <img className="w-52" src={product.image} alt={product.name} />
+                <div className="hover-overlay" onClick={() => setSelectedProduct(product)}>
+                  <span className="hover-text">See More..</span>
+                </div>
+              </div>
+              <p>{product.title}</p>
+            </div>
+          ))}
+        </div>
+        <div className="pagination-container mt-32">
+        <Pagination className="pagination-custom">
+          {pageNumbers.map(number => (
+            <Pagination.Item key={number} active={number === currentPage} onClick={() => handlePageChange(number)}>
+              {number}
+            </Pagination.Item>
+          ))}
+        </Pagination>
+        </div>
+      </>
+    )}
+  </div>
+);
 };
 
 export default Eshop;

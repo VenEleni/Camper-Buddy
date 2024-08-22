@@ -1,7 +1,112 @@
 .eshop_container{
-    background-color: aquamarine;
+    /* background-color: rgba(236, 236, 236, 0.562); */
     width: 100%;
     height: 100vh;
-    
+    /* padding: 20px; */
 }
 
+.eshop_products {
+    display: flex;
+    flex-wrap: wrap;
+    /* gap: 0px; */
+    justify-content: flex-start;;
+    margin-bottom: 10px;
+  }
+  
+  .eshop_product {
+    width: 240px;
+    height: 270px; 
+    background-color: #ffffff;
+    /* border-radius: 8px; */
+    /* padding: 10px; */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .eshop_product img {
+    width: 100%;
+    height:180px;
+    object-fit: cover;
+    /* border-radius: 8px; */
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .product-image-wrapper {
+    position: relative;
+    width: 100%;
+  }
+  
+  .eshop_product p {
+  padding: 0 5px; 
+  font-size: 14px;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; 
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  }
+
+  .hover-overlay {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.596); /* Ημιδιάφανο λευκό χρώμα */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0; /* Αρχικά μη ορατό */
+    transition: opacity 0.3s ease; /* Ομαλή μετάβαση στο hover */
+    border-radius: 8px; /* Προσαρμογή του border-radius */
+  }
+  
+  .hover-text {
+    color: #333;
+    font-size: 16px;
+    opacity: 0; 
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .product-image-wrapper:hover .hover-overlay {
+    opacity: 1; 
+  }
+  
+  .product-image-wrapper:hover .hover-text {
+    opacity: 1;
+  }
+
+  .eshop_banner {
+    width: 100%;
+    max-height: 500px;
+    object-fit: cover; 
+  }
+
+  
+
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .pagination-custom .page-item.active .page-link {
+    background-color: #e2e2e2a8; /* Χρώμα φόντου της ενεργής σελίδας */
+    border-color: #ffffff00; /* Χρώμα περιγράμματος της ενεργής σελίδας */
+    color: #858585c9;
+  }
+  
+  .pagination-custom .page-link {
+    color: #858585c9; /* Χρώμα κειμένου των συνδέσμων */
+  }
+  
+  .pagination-custom .page-link:hover {
+    background-color: #6d6d6d60; /* Χρώμα φόντου κατά το hover */
+    color: white; /* Χρώμα κειμένου κατά το hover */
+  }
+  

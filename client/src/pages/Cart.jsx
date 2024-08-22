@@ -9,11 +9,12 @@ import {increaseCartItemQuantity} from "../actions/cartActions";
 
 const FetchCart = () => {
   const dispatch = useDispatch();
-  const fetchCart = useSelector((state) => state.fetchCart);
+  const fetchCart = useSelector((state) => state.cartReducer);
   const auth = JSON.parse(localStorage.getItem("auth"));
   const userId = auth && auth.user ? auth.user.id : null;
   const { loading, error, cartItems } = fetchCart || [];
 
+  console.log("fetchCart: ", fetchCart);
   console.log("cartItems: ", cartItems);
 
   useEffect(() => {
@@ -32,9 +33,8 @@ const FetchCart = () => {
         product._id
       );
       try {
-        dispatch(removeFromCart(userId, product._id));
+        await dispatch(removeFromCart(userId, product._id));
         console.log("Product removed from cart successfully");
-        // window.location.reload();
       } catch (error) {
         console.error("Error removing product from cart:", error);
       }
@@ -45,9 +45,8 @@ const FetchCart = () => {
   
   const handleReduceQuantityFromCart = async (product) => {
     try {
-      dispatch(reduceCartItemQuantity(userId, product._id));
+      await dispatch(reduceCartItemQuantity(userId, product._id));
       console.log("Product's quantity reduced successfully");
-      // window.location.reload();
     } catch (error) {
       console.error("Error reducing product from cart:", error);
     }
@@ -55,9 +54,8 @@ const FetchCart = () => {
 
   const handleIncreaseQuantityFromCart = async (product) => {
     try {
-      dispatch(increaseCartItemQuantity(userId, product._id));
+      await dispatch(increaseCartItemQuantity(userId, product._id));
       console.log("Product's quantity increased successfully");
-      // window.location.reload();
     } catch (error) {
       console.error("Error increasing product from cart:", error);
     }
@@ -71,9 +69,7 @@ const FetchCart = () => {
 
       <div className="bg-red-300 top-36">
         {cartItems && cartItems.length > 0 ?(
-          cartItems.map((item) => (
-            
-
+          cartItems.map((item) => (    
             <div key={item.product._id} className="flex">
               <img
                 className="w-24"
