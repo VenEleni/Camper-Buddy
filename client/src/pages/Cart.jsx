@@ -4,9 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCartItems } from "../actions/cartActions";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { removeFromCart } from "../actions/cartActions";
-import { reduceCartItemQuantity} from "../actions/cartActions";
-import {increaseCartItemQuantity} from "../actions/cartActions";
-import eshop_img from '../assets/eshop_img.jpeg';
+import { reduceCartItemQuantity } from "../actions/cartActions";
+import { increaseCartItemQuantity } from "../actions/cartActions";
+import eshop_img from "../assets/eshop_img.jpeg";
 
 const FetchCart = () => {
   const dispatch = useDispatch();
@@ -21,7 +21,7 @@ const FetchCart = () => {
   useEffect(() => {
     dispatch(fetchCartItems());
   }, [dispatch]);
-  
+
   useEffect(() => {
     // This effect will run whenever cartItems changes
     console.log("cartItems changed: ", cartItems);
@@ -43,7 +43,7 @@ const FetchCart = () => {
       console.log("User not authenticated for deleting from cart");
     }
   };
-  
+
   const handleReduceQuantityFromCart = async (product) => {
     try {
       await dispatch(reduceCartItemQuantity(userId, product._id));
@@ -51,7 +51,7 @@ const FetchCart = () => {
     } catch (error) {
       console.error("Error reducing product from cart:", error);
     }
-  }
+  };
 
   const handleIncreaseQuantityFromCart = async (product) => {
     try {
@@ -60,7 +60,7 @@ const FetchCart = () => {
     } catch (error) {
       console.error("Error increasing product from cart:", error);
     }
-  }
+  };
 
   return (
     <>
@@ -68,47 +68,71 @@ const FetchCart = () => {
         <EshopNavBar />
       </div>
       <div>
-      <img src={eshop_img} alt='eshop' className='eshop_banner'/>
-    </div>
-    { (cartItems && cartItems.length > 0) && ( 
-  <a href="/checkout" className=" text-black font-bold my-10 mx-20">Place your Order</a>
-) }
+        <img src={eshop_img} alt="eshop" className="eshop_banner" />
+      </div>
+      {cartItems && cartItems.length > 0 && (
+        <a href="/checkout" className=" text-black font-bold my-10 mx-20">
+          Place your Order
+        </a>
+      )}
 
       <div className=" top-3 mb-16">
-        {cartItems && cartItems.length > 0 ?(
-          cartItems.map((item) => (    
-            <div key={item.product._id} className="flex items-center">
-              <div className="ml-10">
-              
-              <img
-                className="w-32 ml-10"
-                src={item.product.image}
-                alt={item.product.title}
-              />
-              
-              
+        {cartItems && cartItems.length > 0 ? (
+          cartItems.map((item) => (
+            <div>
+              <div key={item.product._id} className="flex items-center">
+                <div className="ml-10">
+                  <img
+                    className="w-32 ml-10"
+                    src={item.product.image}
+                    alt={item.product.title}
+                  />
+                </div>
+
+                <div className="ml-10">
+                  <div className="flex items-center">
+                    <p className="text-black text-sm top-2 mr-5">
+                      {item.product.title}
+                    </p>
+                    <div className="flex items-center">
+                      <i
+                        className="bi bi-dash text-black cursor-pointer"
+                        onClick={() =>
+                          handleReduceQuantityFromCart(item.product)
+                        }
+                      ></i>
+                      <p className="text-black text-sm"> {item.quantity}</p>
+                      <i
+                        className="bi bi-plus text-black cursor-pointer"
+                        onClick={() =>
+                          handleIncreaseQuantityFromCart(item.product)
+                        }
+                      ></i>
+                    </div>
+                  </div>
+                  <p className="text-black text-sm">
+                    Price: {item.product.price * item.quantity} €
+                  </p>
+                </div>
+                <i
+                  className="bi bi-x-lg text-black ml-10 cursor-pointer"
+                  onClick={() => handleRemoveFromCart(item.product)}
+                ></i>
               </div>
-              
-              <div className="ml-10">
-                <div className="flex items-center">
-              <p className="text-black text-sm top-2 mr-5">{item.product.title}</p>
-              <div className="flex items-center">
-              <i className="bi bi-dash text-black cursor-pointer" onClick={() => handleReduceQuantityFromCart(item.product)}></i>
-              <p className="text-black text-sm"> {item.quantity}</p>
-              <i className="bi bi-plus text-black cursor-pointer" onClick={()=> handleIncreaseQuantityFromCart(item.product)}></i>
+              <div className=" text-black font-bold my-10 ml-80">
+                Total:{" "}
+                {cartItems.reduce(
+                  (acc, current) =>
+                    acc + current.product.price * current.quantity,
+                  0
+                )}{" "}
+                €
               </div>
-              </div>
-              <p className="text-black text-sm">Price: {item.product.price} €</p>
-              
-              </div>
-              <i className="bi bi-x-lg text-black ml-10 cursor-pointer" onClick={() => handleRemoveFromCart(item.product)}></i>
             </div>
           ))
-          
-        )  : (
-          <p>Your cart is empty</p>
+        ) : (
+          <p className="text-black">Your cart is empty</p>
         )}
-     
       </div>
     </>
   );
