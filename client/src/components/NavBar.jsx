@@ -1,12 +1,19 @@
 import React from "react";
 import { Link} from "react-router-dom";
 import logo from "../assets/logo.png";
-import { useSelector} from "react-redux";
+import { useDispatch, useSelector } from 'react-redux';
 import "beercss/dist/cdn/beer.min.css";
 import "./NavBar.css";
+import {logout} from '../actions/authActions';
+
 
 function NavBar() {
+  const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth);
+
+  const handleLogOut = () => {
+    dispatch(logout());
+  }
 
   
   return (
@@ -25,6 +32,7 @@ function NavBar() {
       {auth.isAuthenticated ? (
         <div className="user_nav">
           <span className="user_nav_span">Hello traveller!</span>
+          <p className="cursor-pointer" onClick={handleLogOut}>Leave</p>
         </div>
       ) : (
       <div className="login_nav">

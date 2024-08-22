@@ -8,6 +8,8 @@ export const LOGIN_FAIL = 'LOGIN_FAIL';
 export const GET_USER_BY_ID = 'GET_USER';
 export const GET_USER_BY_ID_SUCCESS = 'GET_USER_SUCCESS';
 export const GET_USER_BY_ID_FAIL = 'GET_USER_FAIL';
+export const LOG_OUT = 'LOG_OUT';
+
 
 export const getUserById = (userId) => async (dispatch) => {
   try {
@@ -55,3 +57,10 @@ export const login = (userData) => async (dispatch) => {
     });
   }
 };
+
+export const logout = () => (dispatch) => {
+  localStorage.removeItem('auth');
+  dispatch({
+    type: LOG_OUT,
+  });
+}

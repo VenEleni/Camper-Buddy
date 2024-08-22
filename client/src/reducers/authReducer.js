@@ -3,6 +3,7 @@ import {
   REGISTER_FAIL,
   LOGIN_SUCCESS,
   LOGIN_FAIL,
+  LOG_OUT
 } from "../actions/authActions";
 import {jwtDecode} from "jwt-decode";
 
@@ -70,9 +71,18 @@ const authReducer = (state = initialState, action) => {
         user: null,
         error: action.payload,
       };
+      case LOG_OUT:
+        return {
+          ...state,
+          token: null,
+          isAuthenticated: false,
+          user: null,
+          error: null,
+        };
     default:
       return state;
   }
 };
+
 
 export default authReducer;
