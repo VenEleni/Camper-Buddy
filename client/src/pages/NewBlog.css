@@ -1,0 +1,51 @@
+.create_blog_body{
+    display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  padding: 0 10px;
+  position: relative; 
+  /* background-color: #ff0000; */
+  background-image: url(../assets/blog_img.jpeg);
+  background-repeat: no-repeat;
+  /* height: 50rem; */
+  background-position: center top;
+  background-size: 85rem 55rem;
+}
+
+.create_blog_input{
+    width: 270px !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    backdrop-filter: blur(5px);
+    background-color: #6161612f;
+}
+
+.create_blog_textarea  {
+    height: 400px !important;
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(5px);
+}
+
+.create_blog_form{
+    height: 600px !important
+}
+
+.blog_textarea{
+    background-color: #6161612f;
+    width: 600px !important;
+    height: 300px !important;
+   
+}
+
+.create_blog_textarea::placeholder{
+    color: rgb(255, 255, 255) !important;
+}
+
+.create_blog_input::placeholder{
+    color: rgb(255, 255, 255) !important;
+}

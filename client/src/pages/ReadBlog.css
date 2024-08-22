@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&display=swap');
+
+.title_container{
+    top: -200px;
+    /* left: 300px; */
+    margin-left: 24%;
+}
+
+.blog_title{
+    font-family: "Julius Sans One", sans-serif;
+}
+
+.content_container {
+    line-height: 1.8;
+    font-size: 1.125rem;
+    color: #444;
+}

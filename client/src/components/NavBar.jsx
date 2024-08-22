@@ -8,6 +8,7 @@ import "./NavBar.css";
 function NavBar() {
   const auth = useSelector((state) => state.auth);
 
+  
   return (
     <nav className="navBarContainer">
       <div className="navbar-brand">
