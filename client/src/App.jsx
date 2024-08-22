@@ -20,6 +20,7 @@ import Orders from './pages/Orders';
 import Blogs from './pages/Blogs';
 import NewBlog from './pages/NewBlog';
 import ReadBlog from './pages/ReadBlog';
+import ForumErrorPage from './pages/ForumErrorPage';
 
 
 // const stripePromise = loadStripe('pk_test_51Pp6A1DAYdBNDDpzWqzOXTTwS9zWqVFywfV3GgGIAqtZQDHx3iCwFAcRdxha3QYMLJOWLlRyopicdqhhDqjkOs4600Nd9YHySl');
@@ -39,6 +40,7 @@ function App() {
         <Route path='/blogs' element={<Blogs />}/>
         <Route path='/newblog' element={<NewBlog />}/>
         <Route path='/blogs/:id' element={<ReadBlog />}/>
+        <Route path='/forumerror' element={<ForumErrorPage />}/>
         <Route
             path='/checkout'
             element={<Checkout />}  // Remove <Elements> from here

@@ -19,7 +19,7 @@ function NavBar() {
       <div className="navbar-links">
         <Link to="/eshop">E-shop</Link>
         <Link to="/blogs">Blog</Link>
-        <Link to="">Forum</Link>
+        <Link to="/forumerror">Forum</Link>
       </div>
 
       {auth.isAuthenticated ? (
