@@ -4,20 +4,31 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAIL,
 } from "../actions/authActions";
-
+import {jwtDecode} from "jwt-decode";
 
 let initialState;
 
 try {
-  const authData = localStorage.getItem('auth');
+  const authData = localStorage.getItem("auth");
   if (authData) {
     const parsedAuthData = JSON.parse(authData);
-    initialState = {
-      token: parsedAuthData.token,
-      isAuthenticated: true,
-      user: parsedAuthData.user,
-      error: null,
-    };
+    const decodedToken = jwtDecode(parsedAuthData.token);
+    if (decodedToken.exp * 1000 < Date.now()) {
+      localStorage.removeItem("auth");
+      initialState = {
+        token: null,
+        isAuthenticated: false,
+        user: null,
+        error: null,
+      };
+    } else {
+      initialState = {
+        token: parsedAuthData.token,
+        isAuthenticated: true,
+        user: parsedAuthData.user,
+        error: null,
+      };
+    }
   } else {
     initialState = {
       token: null,

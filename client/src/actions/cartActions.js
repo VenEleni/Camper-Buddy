@@ -21,7 +21,6 @@ export const CART_CLEAR_FAIL = "CART_CLEAR_FAIL";
 
 export const clearCart = () => async (dispatch, getState) => {
   try {
-    console.log("I'm in the clearCart action");    
     dispatch({ type: CART_CLEAR });
     const { auth } = getState();
     const token = auth.token;

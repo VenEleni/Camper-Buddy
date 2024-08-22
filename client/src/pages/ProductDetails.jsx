@@ -96,10 +96,10 @@ const ProductDetails = ({ product, onBack }) => {
         {auth.isAuthenticated ? (
           <>
         <button onClick={handleAddToCart} >Add to cart </button>
-        {cartMessage && <p className="text-black mt-2">{cartMessage}</p>}
+        {cartMessage && <p className="text-black mt-2 ">{cartMessage}</p>}
         </>
         ) : (
-          <p>Please <a href="/login">log in</a> to add to cart</p>
+          <p className="text-black" >Please <a className="text-black" href="/login">log in</a> to add to cart</p>
         )}
       </div>
     </div>
@@ -157,7 +157,7 @@ const ProductDetails = ({ product, onBack }) => {
 {submitReviewMessage && <p className="text-black mt-2">{submitReviewMessage}</p>}
 </form>
     ): (
-      <p className="text-black">Please<a href="/login">log in</a> to leave a review</p>
+      <p className="text-black ml-10">Please <a className="text-black" href="/login">log in</a> to leave a review</p>
     )}
 </div>
 

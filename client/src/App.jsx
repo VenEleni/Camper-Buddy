@@ -17,6 +17,7 @@ import {loadStripe} from '@stripe/stripe-js';
 import Checkout from './pages/CheckOut';
 import OrderSuccess from './components/OrderSuccess';
 import Orders from './pages/Orders';
+import Blogs from './pages/Blogs';
 
 // const stripePromise = loadStripe('pk_test_51Pp6A1DAYdBNDDpzWqzOXTTwS9zWqVFywfV3GgGIAqtZQDHx3iCwFAcRdxha3QYMLJOWLlRyopicdqhhDqjkOs4600Nd9YHySl');
 
@@ -32,6 +33,7 @@ function App() {
         <Route path='/createproduct' element={<CreateProduct />}/>
         <Route path='/cart' element={<FetchCart />}/>
         <Route path='/ordersuccess' element={<OrderSuccess />}/>
+        <Route path='/blogs' element={<Blogs />}/>
         <Route
             path='/checkout'
             element={<Checkout />}  // Remove <Elements> from here

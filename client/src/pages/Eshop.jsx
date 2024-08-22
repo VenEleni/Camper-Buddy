@@ -91,9 +91,9 @@ const Eshop = () => {
           ))}
         </div>
         <div className="pagination-container mt-32">
-        <Pagination className="pagination-custom">
+        <Pagination className="pagination-custom text-black">
           {pageNumbers.map(number => (
-            <Pagination.Item key={number} active={number === currentPage} onClick={() => handlePageChange(number)}>
+            <Pagination.Item  key={number} active={number === currentPage} onClick={() => handlePageChange(number)}>
               {number}
             </Pagination.Item>
           ))}

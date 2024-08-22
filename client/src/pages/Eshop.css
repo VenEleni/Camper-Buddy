@@ -89,17 +89,17 @@
   }
   
   .pagination-custom .page-item.active .page-link {
-    background-color: #e2e2e2a8; 
-    border-color: #ffffff00; 
-    color: #858585c9;
+    background-color: #e2e2e2a8 ; 
+    border-color: #ffffff00 ; 
+    color: #858585c9 !important;
   }
   
   .pagination-custom .page-link {
-    color: #858585c9;
+    color: #858585c9 !important;
   }
   
   .pagination-custom .page-link:hover {
-    background-color: #6d6d6d60; 
-    color: white; 
+    background-color: #6d6d6d60 !important; 
+    color: white !important; 
   }
   

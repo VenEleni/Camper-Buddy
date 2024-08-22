@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './reducers/authReducer';
 import productCreateReducer from './reducers/productCreateReducer';
 import productsFetchReducer from './reducers/productsFetchReducer';
-import removeFromCartReducer from './reducers/cartRemoveItemReducer';
 import fetchFilteredProductsReducer from './reducers/productsFilterFetchReducer';
 import shippingSetInfoReducer from './reducers/shippingSetInfoReducer';
 import ordersFetchReducer from './reducers/ordersFetchReducer';
@@ -11,6 +10,7 @@ import reviewCreateReducer from './reducers/reviewCreateReducer';
 import reviewFetchReducer from './reducers/reviewFetchReducer';
 import userFetchByIdReducer from './reducers/userFetchByIdReducer';
 import cartReducer from './reducers/cartReducer';
+import blogReducer from './reducers/blogReducers';
 
 const store = configureStore({
   reducer: {
@@ -25,6 +25,7 @@ const store = configureStore({
     reviewCreate: reviewCreateReducer,
     reviewFetch: reviewFetchReducer,
     userFetchById: userFetchByIdReducer,
+    blogReducer: blogReducer
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

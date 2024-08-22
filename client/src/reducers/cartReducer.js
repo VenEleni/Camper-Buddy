@@ -12,6 +12,7 @@ import {
   CART_INCREASE_ITEM_QUANTITY_SUCCESS,
   CART_ADD_ITEM_FAIL,
   CART_REDUCE_ITEM_QUANTITY_FAIL,
+  CART_INCREASE_ITEM_QUANTITY_FAIL,
   CART_REMOVE_ITEM_FAIL,
   CART_CLEAR,
   CART_CLEAR_SUCCESS,
@@ -41,8 +42,6 @@ export const cartReducer = (state = initialState, action) => {
     case CART_REMOVE_ITEM_SUCCESS:
     case CART_REDUCE_ITEM_QUANTITY_SUCCESS:
     case CART_INCREASE_ITEM_QUANTITY_SUCCESS:
-        console.log("cartItems on Success Reducer: ", action.payload);
-        console.log("cartItems on Success Reducer: ", action.payload.cart);
       return {
         ...state,
         cartItems: action.payload, // Always update cartItems with the new payload
@@ -54,6 +53,7 @@ export const cartReducer = (state = initialState, action) => {
     case CART_REDUCE_ITEM_QUANTITY_FAIL:
     case CART_REMOVE_ITEM_FAIL:
     case CART_CLEAR_FAIL:
+    case CART_INCREASE_ITEM_QUANTITY_FAIL:
       return {
         ...state,
         loading: false,

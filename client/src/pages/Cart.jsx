@@ -6,6 +6,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 import { removeFromCart } from "../actions/cartActions";
 import { reduceCartItemQuantity} from "../actions/cartActions";
 import {increaseCartItemQuantity} from "../actions/cartActions";
+import eshop_img from '../assets/eshop_img.jpeg';
 
 const FetchCart = () => {
   const dispatch = useDispatch();
@@ -66,36 +67,48 @@ const FetchCart = () => {
       <div>
         <EshopNavBar />
       </div>
+      <div>
+      <img src={eshop_img} alt='eshop' className='eshop_banner'/>
+    </div>
+    { (cartItems && cartItems.length > 0) && ( 
+  <a href="/checkout" className=" text-black font-bold my-10 mx-20">Place your Order</a>
+) }
 
-      <div className="bg-red-300 top-36">
+      <div className=" top-3 mb-16">
         {cartItems && cartItems.length > 0 ?(
           cartItems.map((item) => (    
-            <div key={item.product._id} className="flex">
+            <div key={item.product._id} className="flex items-center">
+              <div className="ml-10">
+              
               <img
-                className="w-24"
+                className="w-32 ml-10"
                 src={item.product.image}
                 alt={item.product.title}
               />
-              <p>{item.product.title}</p>
-              <p>{item.product.price} €</p>
               
-              <i className="bi bi-dash-lg" onClick={() => handleReduceQuantityFromCart(item.product)}></i>
-              <p>Quantity: {item.quantity}</p>
-              <i className="bi bi-plus-lg" onClick={()=> handleIncreaseQuantityFromCart(item.product)}></i>
-              <span
-                onClick={() => handleRemoveFromCart(item.product)}
-              >Remove</span>
+              
+              </div>
+              
+              <div className="ml-10">
+                <div className="flex items-center">
+              <p className="text-black text-sm top-2 mr-5">{item.product.title}</p>
+              <div className="flex items-center">
+              <i className="bi bi-dash text-black cursor-pointer" onClick={() => handleReduceQuantityFromCart(item.product)}></i>
+              <p className="text-black text-sm"> {item.quantity}</p>
+              <i className="bi bi-plus text-black cursor-pointer" onClick={()=> handleIncreaseQuantityFromCart(item.product)}></i>
+              </div>
+              </div>
+              <p className="text-black text-sm">Price: {item.product.price} €</p>
+              
+              </div>
+              <i className="bi bi-x-lg text-black ml-10 cursor-pointer" onClick={() => handleRemoveFromCart(item.product)}></i>
             </div>
           ))
           
         )  : (
           <p>Your cart is empty</p>
         )}
-        {cartItems && cartItems.length > 0 ? ( 
-  <a href="/checkout" className=" text-white font-bold py-2 px-4 rounded">Make your Order</a>
-) : (
-  <p>Your cart is empty</p>
-)}
+     
       </div>
     </>
   );

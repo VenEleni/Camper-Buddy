@@ -36,9 +36,9 @@ exports.deleteBlogById = async (req, res) => {
 };
 
 exports.createBlog = async (req, res) => {
-  const { title, content, author, image } = req.body;
+  const { title, content, image } = req.body;
   try {
-    const newBlog = new BlogModel({ title, content, author, image });
+    const newBlog = new BlogModel({ title, content, image });
     await newBlog.save();
     res.status(201).json(newBlog);
   } catch (error) {
