@@ -83,10 +83,10 @@ const Eshop = () => {
               <div className="product-image-wrapper">
                 <img className="w-52" src={product.image} alt={product.name} />
                 <div className="hover-overlay" onClick={() => setSelectedProduct(product)}>
-                  <span className="hover-text">See More..</span>
+                  <span className="hover-text text-black">See More..</span>
                 </div>
               </div>
-              <p>{product.title}</p>
+              <p className="text-black">{product.title}</p>
             </div>
           ))}
         </div>

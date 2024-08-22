@@ -2,13 +2,11 @@
     /* background-color: rgba(236, 236, 236, 0.562); */
     width: 100%;
     height: 100vh;
-    /* padding: 20px; */
 }
 
 .eshop_products {
     display: flex;
     flex-wrap: wrap;
-    /* gap: 0px; */
     justify-content: flex-start;;
     margin-bottom: 10px;
   }
@@ -17,8 +15,6 @@
     width: 240px;
     height: 270px; 
     background-color: #ffffff;
-    /* border-radius: 8px; */
-    /* padding: 10px; */
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
     margin-bottom: 30px;
@@ -28,7 +24,6 @@
     width: 100%;
     height:180px;
     object-fit: cover;
-    /* border-radius: 8px; */
     cursor: pointer;
     transition: all 0.3s ease;
   }
@@ -57,17 +52,15 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.596); /* Ημιδιάφανο λευκό χρώμα */
+    background-color: rgba(255, 255, 255, 0.596); 
     display: flex;
     align-items: center;
     justify-content: center;
-    opacity: 0; /* Αρχικά μη ορατό */
-    transition: opacity 0.3s ease; /* Ομαλή μετάβαση στο hover */
-    border-radius: 8px; /* Προσαρμογή του border-radius */
+    opacity: 0; 
+    transition: opacity 0.3s ease;
   }
   
   .hover-text {
-    color: #333;
     font-size: 16px;
     opacity: 0; 
     transition: opacity 0.3s ease;
@@ -96,17 +89,17 @@
   }
   
   .pagination-custom .page-item.active .page-link {
-    background-color: #e2e2e2a8; /* Χρώμα φόντου της ενεργής σελίδας */
-    border-color: #ffffff00; /* Χρώμα περιγράμματος της ενεργής σελίδας */
+    background-color: #e2e2e2a8; 
+    border-color: #ffffff00; 
     color: #858585c9;
   }
   
   .pagination-custom .page-link {
-    color: #858585c9; /* Χρώμα κειμένου των συνδέσμων */
+    color: #858585c9;
   }
   
   .pagination-custom .page-link:hover {
-    background-color: #6d6d6d60; /* Χρώμα φόντου κατά το hover */
-    color: white; /* Χρώμα κειμένου κατά το hover */
+    background-color: #6d6d6d60; 
+    color: white; 
   }
   

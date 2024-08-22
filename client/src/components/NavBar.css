@@ -16,7 +16,6 @@
 
 .navbar-links{
 border-bottom: 1px solid white;
-/* background-color: rgba(0, 255, 255, 0.492); */
 display: flex;
 justify-content: space-around;
 width: 40%;
@@ -30,21 +29,34 @@ padding-bottom: 5px;
     font-size: 32px;
     font-family: "Julius Sans One", sans-serif;
     font-weight: lighter;
+    text-decoration: none;
 }
 
 .navbar-links a:hover{
     text-shadow: 0 0 6px #ffffff;
 }
 
-.login_nav{
-    color: white;
+.login_nav, .user_nav{
+    color: rgb(255, 255, 255);
     font-size: 18px;
-    /* font-family: "Julius Sans One", sans-serif; */
     font-weight: lighter;
-    /* background-color: aquamarine; */
-    top: -17px;;
+    top: -17px;
+}
+
+.user_nav_span{
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-weight: lighter;
+    margin-right: 30px !important;
+    margin-left:-30px;
+}
+
+.login_link {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
 }
 
 .login_icon{
     margin-left:5px;
+    color: rgb(255, 255, 255);
 }
