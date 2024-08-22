@@ -12,3 +12,16 @@
     font-size: 2rem;
     margin: 5px;
   }
+
+
+  .star-default {
+    color: #e2e2e2 !important;
+  }
+  
+  .star-highlight {
+    color: #ffc107 !important;
+  }
+
+  .review_textarea:focus{
+    border: none !important;
+  }
