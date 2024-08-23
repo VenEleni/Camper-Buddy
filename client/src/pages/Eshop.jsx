@@ -8,6 +8,7 @@ import eshop_img from '../assets/eshop_img.jpeg';
 import Pagination from 'react-bootstrap/Pagination';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const Eshop = () => {
   const dispatch = useDispatch();
@@ -130,6 +131,7 @@ const Eshop = () => {
         </div>
       </>
     )}
+    <Footer />
   </div>
 );
 };

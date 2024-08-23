@@ -7,6 +7,7 @@ import { removeFromCart } from "../actions/cartActions";
 import { reduceCartItemQuantity } from "../actions/cartActions";
 import { increaseCartItemQuantity } from "../actions/cartActions";
 import eshop_img from "../assets/eshop_img.jpeg";
+import Footer from "../components/Footer";
 
 const FetchCart = () => {
   const dispatch = useDispatch();
@@ -134,6 +135,7 @@ const FetchCart = () => {
           <p className="text-black">Your cart is empty</p>
         )}
       </div>
+      <Footer />
     </>
   );
 };

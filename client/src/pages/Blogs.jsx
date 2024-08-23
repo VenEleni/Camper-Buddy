@@ -5,6 +5,7 @@ import './Blogs.css';
 import { useDispatch, useSelector } from 'react-redux';
 import {fetchBlogs} from '../actions/blogActions';
 import { useNavigate } from "react-router-dom";
+import Footer from "../components/Footer";
 
 const Blogs = () => {
     const dispatch = useDispatch();
@@ -58,6 +59,7 @@ const Blogs = () => {
                     !loading && <p>No blogs available.</p>
                 )}
             </div>
+            <Footer/>
     </div>
   );
 };
