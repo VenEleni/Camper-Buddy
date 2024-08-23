@@ -6,19 +6,22 @@ import { fetchProducts, fetchProductsByCategory } from "../actions/productAction
 import ProductDetails from './ProductDetails'
 import eshop_img from '../assets/eshop_img.jpeg';
 import Pagination from 'react-bootstrap/Pagination';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+import { useNavigate } from "react-router-dom";
 
 const Eshop = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const productsFetch = useSelector((state) => state.productsFetch);
   const fetchFilteredProducts = useSelector((state) => state.fetchFilteredProducts);
   const [productsToDisplay, setproductsToDisplay] = useState([]);
   const auth = useSelector((state) => state.auth);
-  // const state = useSelector((state) => state);
   const { loading, error, products } = productsFetch  || [];
   const { loading: loadingFiltered, error: errorFiltered, filteredProducts = [] } = fetchFilteredProducts || [];
   const [currentPage, setCurrentPage] = useState(1);
   const [productsPerPage] = useState(10); 
   const [selectedCategory, setSelectedCategory] = useState("All products");
+  const [searchQuery, setSearchQuery] = useState("");
   
   console.log("auth state in eshop page", auth);
 
@@ -36,15 +39,23 @@ const Eshop = () => {
   };
 
   useEffect(() => {
-    console.log('filteredProducts:', filteredProducts); // Debugging line
-    console.log('products:', products); // Debugging line
-
     if (filteredProducts.length > 0) {
       setproductsToDisplay(filteredProducts);
     } else {
       setproductsToDisplay(products);
     }
   }, [filteredProducts, products]);
+
+  useEffect(() => {
+    if (searchQuery) {
+      const filtered = products.filter(product =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setproductsToDisplay(filtered);
+    } else {
+      setproductsToDisplay(products);
+    }
+  }, [searchQuery, products]);
 
   const indexOfLastProduct = currentPage * productsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
@@ -69,8 +80,18 @@ const Eshop = () => {
       <img src={eshop_img} alt='eshop' className='eshop_banner'/>
     </div>
     <div className="category-title flex justify-center">
-        <h3 className='text-black top-5'>{selectedCategory}</h3>
+        <h3 className='text-black top-5 mr-10'>{selectedCategory}</h3>
+        <div className="search-bar flex justify-center top-4">
+        <input 
+          type="text"
+          placeholder="Search product name..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="search-input text-black p-2"
+        />
       </div>
+      </div>
+
 
     {selectedProduct ? (
       <ProductDetails
@@ -85,12 +106,15 @@ const Eshop = () => {
               key={product._id}
               className="flex flex-col items-center mx-7 eshop_product"
             >
-              <div className="product-image-wrapper">
+              <div className="product-image-wrapper relative">
                 <img className="w-52" src={product.image} alt={product.name} />
                 <div className="hover-overlay" onClick={() => setSelectedProduct(product)}>
                   <span className="hover-text text-black">See More..</span>
                 </div>
-              </div>
+                {auth.isAuthenticated && auth.user && auth.user.role === 'admin' && (
+                <i onClick={() =>  navigate(`/updateproduct/${product._id}`)} className="bi bi-pencil-fill absolute top-0 right-0 m-2 text-black cursor-pointer no-underline"></i>
+                )}
+                </div>
               <p className="text-black">{product.title}</p>
             </div>
           ))}

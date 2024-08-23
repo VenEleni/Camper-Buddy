@@ -3,18 +3,19 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const { removeFromCart } = require('./cartController'); // Adjust the path as necessary
-const User = require('./models/User'); // Adjust the path as necessary
-const Product = require('./models/Product'); // Adjust the path as necessary
+const User = require('../models/userModel'); // Adjust the path as necessary
+const Product = require('../models/productModel'); // Adjust the path as necessary
 
 app.use(bodyParser.json());
 app.post('/removeFromCart', removeFromCart);
 
-jest.mock('./models/User');
-jest.mock('./models/Product');
+jest.mock('../models/userModel');
+jest.mock('../models/productModel');
 
 describe('removeFromCart API', () => {
   let user;
   let product;
+  
 
   beforeEach(() => {
     user = {
@@ -70,6 +71,6 @@ describe('removeFromCart API', () => {
       .send({ userId: 'userId', productId: 'productId' });
 
     expect(res.status).toBe(500);
-    expect(res.body.msg).toBe('server error');
+    expect(res.body.msg).toEqual('server error');
   });
 });

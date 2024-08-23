@@ -5,7 +5,7 @@ exports.getAllProducts = async (req, res) => {
     const users = await ProductModel.find();
     res.json(users);
   } catch (error) {
-    res.status(500).json({ message: "Error fetching users" });
+    res.status(500).json({ message: "Error fetching products" });
   }
 };
 
@@ -67,6 +67,9 @@ exports.deleteProductById = async (req, res) => {
 
 exports.updateProductById = async (req, res) => {
   const id = req.params.id;
+
+  console.log("req.body is : ", req.body);
+  
   const {
     title,
     description,
@@ -94,6 +97,8 @@ exports.updateProductById = async (req, res) => {
       },
       { new: true }
     );
+    console.log("updateProduct is : ", updateProduct);
+    
     res.status(200).json(updateProduct);
   } catch (error) {
     res.status(500).json({ msg: "Error updating product" });

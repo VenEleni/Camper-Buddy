@@ -11,6 +11,7 @@ import reviewFetchReducer from './reducers/reviewFetchReducer';
 import userFetchByIdReducer from './reducers/userFetchByIdReducer';
 import cartReducer from './reducers/cartReducer';
 import blogReducer from './reducers/blogReducers';
+import productUpdateReducer from './reducers/productUpdateReducer';
 
 const store = configureStore({
   reducer: {
@@ -25,7 +26,8 @@ const store = configureStore({
     reviewCreate: reviewCreateReducer,
     reviewFetch: reviewFetchReducer,
     userFetchById: userFetchByIdReducer,
-    blogReducer: blogReducer
+    blogReducer: blogReducer,
+    productUpdateReducer: productUpdateReducer
   },
   devTools: process.env.NODE_ENV !== 'production',
 });

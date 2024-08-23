@@ -8,7 +8,7 @@ router.get('/allproducts', getAllProducts);
 router.get('/product/:id', getProductById);
 router.post('/addproduct',authorization, isAdminAuthorization, createNewProduct);
 router.delete('/deleteproduct:id',authorization, isAdminAuthorization, deleteProductById);
-router.put('/updateproduct:id',authorization, isAdminAuthorization, updateProductById);
+router.put('/updateproduct/:id',authorization, isAdminAuthorization, updateProductById);
 router.get('/filterproducts', filterProducts);
 
 module.exports = router;
