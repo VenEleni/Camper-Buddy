@@ -30,9 +30,9 @@ function NavBar() {
       </div>
 
       {auth.isAuthenticated ? (
-        <div className="user_nav">
-          <span className="user_nav_span">Hello traveller!</span>
-          <p className="cursor-pointer" onClick={handleLogOut}>Leave</p>
+        <div className="user_nav flex leaveBox">
+          <span className="user_nav_span top-4">Hello traveller!</span>
+          <p className="cursor-pointer " onClick={handleLogOut}>Leave..</p>
         </div>
       ) : (
       <div className="login_nav">

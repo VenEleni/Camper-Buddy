@@ -43,6 +43,7 @@ function App() {
         <Route path='/blogs/:id' element={<ReadBlog />}/>
         <Route path='/forumerror' element={<ForumErrorPage />}/>
         <Route path="/updateproduct/:id"  element={<UpdateProduct />}/>
+        <Route path='/orders' element={<Orders />}/>
         <Route
             path='/checkout'
             element={<Checkout />}  // Remove <Elements> from here

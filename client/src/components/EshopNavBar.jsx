@@ -52,12 +52,16 @@ const EshopNavBar = ({ onCategoryChange }) => {
           <option value="Camping Furniture">Camping Furniture</option>
           <option value="Other">Other</option>
         </select>
-        <div className="ml-32">
+        <div className="ml-32 right-5 flex">
         {auth.isAuthenticated && (
             <a href="/cart" className="bi bi-bag text-black no-underline mr-3"></a>
           )}
           {auth.isAuthenticated && auth.user && auth.user.role === 'admin' && (
+            <div className="flex">
+
             <a href="/createproduct" className="bi bi-plus-circle text-black no-underline"></a>
+            <a href="/orders" className=" text-black no-underline ml-3">See Orders..</a>
+            </div>
           )}
         </div>
       </div>

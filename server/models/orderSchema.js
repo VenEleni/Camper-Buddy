@@ -51,7 +51,11 @@ const OrderSchema = new mongoose.Schema({
   fullName: {
     type: String,
     required: true,
-  }
+  },
+  total: {
+    type: Number,
+    required: true,
+  },
 });
 
 const Order = mongoose.model("Order", OrderSchema);

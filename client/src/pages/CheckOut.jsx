@@ -3,14 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Elements  } from '@stripe/react-stripe-js';
 import { fetchCartItems } from '../actions/cartActions';
 import axiosInstance from '../components/axiosInstance';
-import CheckoutForm from './CheckoutForm';
+import CheckoutForm from './CheckOutForm.jsx';
 import { loadStripe } from '@stripe/stripe-js';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import {setShippingInfo} from '../actions/shippingActions';
+import './CheckOut.css';
 
 const stripePromise = loadStripe('pk_test_51Pp6A1DAYdBNDDpzWqzOXTTwS9zWqVFywfV3GgGIAqtZQDHx3iCwFAcRdxha3QYMLJOWLlRyopicdqhhDqjkOs4600Nd9YHySl');
 
@@ -89,87 +89,116 @@ const Checkout = () => {
 
  
   return (
-    <div className='ml-96'>
-{!showPaymentForm ? (
-        <Form onSubmit={handleShippingSubmit}>
-        <h5 className='mb-16'>Please fill the form with your shipping information</h5>
-      <Row className="mb-3" >
-        <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control type="email" placeholder="Enter email" name="email"
-            value={shippingData.email}
-            onChange={handleShippingChange}
-            required />
-        </Form.Group>
+    <div className="container mx-auto p-6">
+      {!showPaymentForm ? (
+        <Form onSubmit={handleShippingSubmit} className="bg-white shadow-lg rounded-lg p-8 max-w-lg mx-auto">
+          <h5 className="text-xl font-semibold mb-6 text-black">Please fill the form with your shipping information</h5>
 
-        <Form.Group as={Col} controlId="formGridPhoneNumber">
-          <Form.Label>Phone Number</Form.Label>
-          <Form.Control type="number" placeholder="Phone Number" name="phone"
-            value={shippingData.phone}
-            onChange={handleShippingChange}
-            required />
-        </Form.Group>
-      </Row>
+          <Row className="mb-4">
+            <Form.Group as={Col} controlId="formGridEmail">
+              <Form.Label className="font-medium text-black">Email</Form.Label>
+              <Form.Control 
+                type="email" 
+                placeholder="Enter email" 
+                name="email"
+                value={shippingData.email}
+                onChange={handleShippingChange}
+                required 
+                className="border-gray-300 rounded-lg text-black"
+              />
+            </Form.Group>
 
-      <Row className="mb-3">
-      <Form.Group as={Col} className="mb-3" controlId="formGridFullName">
-        <Form.Label>Full Name</Form.Label>
-        <Form.Control placeholder="Enter your full name"  type="text"
-            name="fullName"
-            value={shippingData.fullName}
-            onChange={handleShippingChange}
-            required />
-      </Form.Group>
+            <Form.Group as={Col} controlId="formGridPhoneNumber">
+              <Form.Label className="font-medium text-black">Phone Number</Form.Label>
+              <Form.Control 
+                type="number" 
+                placeholder="Phone Number" 
+                name="phone"
+                value={shippingData.phone}
+                onChange={handleShippingChange}
+                required 
+                className="border-gray-300 rounded-lg text-black"
+              />
+            </Form.Group>
+          </Row>
 
-      <Form.Group as={Col} className="mb-3" controlId="formGridAddress">
-        <Form.Label>Address</Form.Label>
-        <Form.Control placeholder="1234 Main St"  type="text"
-            name="address"
-            value={shippingData.address}
-            onChange={handleShippingChange}
-            required />
-      </Form.Group>
-      </Row>
+          <Row className="mb-4">
+            <Form.Group as={Col} controlId="formGridFullName">
+              <Form.Label className="font-medium text-black">Full Name</Form.Label>
+              <Form.Control 
+                placeholder="Enter your full name"  
+                type="text"
+                name="fullName"
+                value={shippingData.fullName}
+                onChange={handleShippingChange}
+                required 
+                className="border-gray-300 rounded-lg text-black"
+              />
+            </Form.Group>
 
-      <Row className="mb-3">
-        <Form.Group as={Col} controlId="formGridCountry">
-          <Form.Label>Country</Form.Label>
-          <Form.Control  type="text"
-            name="country"
-            value={shippingData.country}
-            onChange={handleShippingChange}
-            required/>
-        </Form.Group>
+            <Form.Group as={Col} controlId="formGridAddress">
+              <Form.Label className="font-medium text-black">Address</Form.Label>
+              <Form.Control 
+                placeholder="1234 Main St"  
+                type="text"
+                name="address"
+                value={shippingData.address}
+                onChange={handleShippingChange}
+                required 
+                className="border-gray-300 rounded-lg text-black"
+              />
+            </Form.Group>
+          </Row>
 
-        <Form.Group as={Col} controlId="formGridPostalCode">
-          <Form.Label>Postal Code</Form.Label>
-          <Form.Control type="text" name="postalCode"
-            value={shippingData.postalCode}
-            onChange={handleShippingChange}
-            required/>
-        </Form.Group>
-      </Row>
+          <Row className="mb-4">
+            <Form.Group as={Col} controlId="formGridCountry">
+              <Form.Label className="font-medium text-black">Country</Form.Label>
+              <Form.Control 
+                type="text"
+                name="country"
+                value={shippingData.country}
+                onChange={handleShippingChange}
+                required 
+                className="border-gray-300 rounded-lg text-black"
+              />
+            </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Check Out
-      </Button>
-    </Form>
-) : (
-     clientSecret ? (
-         <Elements stripe={stripePromise} options={{ clientSecret }}>
-           <CheckoutForm
-             setError={setError}
-             setSuccess={() => setSuccess(true)}
-             orderData={orderData} // Pass the order data here
-           />
-       </Elements>
+            <Form.Group as={Col} controlId="formGridPostalCode">
+              <Form.Label className="font-medium text-black">Postal Code</Form.Label>
+              <Form.Control 
+              
+                type="text" 
+                name="postalCode"
+                value={shippingData.postalCode}
+                onChange={handleShippingChange}
+                required 
+                className="border-gray-300 rounded-lg text-black"
+              />
+            </Form.Group>
+          </Row>
+
+          <Button 
+            variant="primary" 
+            type="submit" 
+            className="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            Check Out
+          </Button>
+        </Form>
+      ) : clientSecret ? (
+        <Elements stripe={stripePromise} options={{ clientSecret }}>
+          <CheckoutForm
+            setError={setError}
+            setSuccess={() => setSuccess(true)}
+            orderData={orderData} // Pass the order data here
+          />
+        </Elements>
       ) : (
-        <div>Loading...</div>
-      )
+        <div className="text-center text-gray-700">Loading...</div>
       )}
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
-      {success && <p style={{ color: 'green' }}>Payment successful!</p>}
+      {error && <p className="text-red-500 mt-4 text-center">{error}</p>}
+      {success && <p className="text-green-500 mt-4 text-center">Payment successful!</p>}
     </div>
   );
 };

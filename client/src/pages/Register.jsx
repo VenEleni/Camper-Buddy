@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../actions/authActions';
-import "./Register.css"
 import googleLogo from "../assets/google_logo.png";
 import { useNavigate } from "react-router-dom";
 

@@ -15,7 +15,7 @@ const sendEmail = (to, subject, text) => {
     to,
     subject,
     text,
-    html: `<p><b>Happy camping...</b> to <b>${text}</b></p>`,
+    html: `<p><b>Hello Happy Camper 🏕 ... We send you this email to ${text}</b></p>`,
   };
 
   transporter.sendMail(mailOptions, (error, info) => {

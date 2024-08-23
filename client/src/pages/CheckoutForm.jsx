@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { clearCart } from '../actions/cartActions';
 import { setShippingInfo } from '../actions/shippingActions';
 import { useNavigate } from "react-router-dom";
+import './CheckOut.css';
 
 const CheckoutForm = ({  setError, setSuccess, orderData }) => {
   const stripe = useStripe();
@@ -51,12 +52,23 @@ const CheckoutForm = ({  setError, setSuccess, orderData }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <PaymentElement />
-      <button type="submit" disabled={loading || !stripe || !elements}>
+    <form 
+    className="bg-white shadow-md rounded-lg p-12 max-w-md mx-auto text-black"
+    onSubmit={handleSubmit}
+  >
+    <div className="mb-4">
+      <PaymentElement className="border border-gray-300 p-3 rounded-lg" />
+    </div>
+    <button 
+      type="submit" 
+      disabled={loading || !stripe || !elements}
+      className={`w-full py-3 px-4 rounded-lg text-white transition-colors duration-300  ${
+        loading || !stripe || !elements ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
+      }`}
+    >
       {loading ? 'Processing...' : 'Pay'}
-      </button>
-    </form>
+    </button>
+  </form>
   );
 };
 

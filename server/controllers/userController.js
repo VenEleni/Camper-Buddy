@@ -2,6 +2,7 @@ const UserModel = require("../models/userModel");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
 const bcrypt = require("bcrypt");
+const sendEmail = require("../mailer");
 
 exports.getAllUsers = async (req, res) => {
   try {
@@ -27,6 +28,7 @@ exports.register = async (req, res) => {
     });
     await user.save();
     const token = user.generateJWT();
+    sendEmail(email, 'Welcome to Camper Buddy World', `inform you that your account has been created successfully. Get ready for new adventures!`);
     res
       .status(201)
       .json({ message: "User created successfully", token: token });
