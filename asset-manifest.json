@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.df97aca3.css",
-    "main.js": "/static/js/main.01a089af.js",
-    "static/media/material-symbols-rounded.woff2": "/static/media/material-symbols-rounded.5e9f59e7244d8aad3b14.woff2",
-    "static/media/material-symbols-outlined.woff2": "/static/media/material-symbols-outlined.de9c201a483e2d186c6b.woff2",
-    "static/media/material-symbols-sharp.woff2": "/static/media/material-symbols-sharp.864ffc46172bf868ae01.woff2",
-    "static/media/bootstrap-icons.woff?": "/static/media/bootstrap-icons.39795c0b4513de014cf8.woff",
-    "static/media/background_img.jpeg": "/static/media/background_img.6d2dad2d82e7b6ca3358.jpeg",
-    "static/media/bootstrap-icons.woff2?": "/static/media/bootstrap-icons.b7bcc075b395c14ce8c2.woff2",
-    "static/media/blog_img.jpeg": "/static/media/blog_img.cd67b3acd4431486e947.jpeg",
-    "static/media/logo.png": "/static/media/logo.fdf94b0009f589131f50.png",
-    "static/media/eshop_img.jpeg": "/static/media/eshop_img.78a33a0c85a6ebf133a5.jpeg",
-    "static/media/work_in_progress.png": "/static/media/work_in_progress.20021d1c74edb5cccdd7.png",
-    "static/media/google_logo.png": "/static/media/google_logo.0b50af2fbb8c1e8ca23e.png",
-    "index.html": "/index.html",
-    "main.df97aca3.css.map": "/static/css/main.df97aca3.css.map",
-    "main.01a089af.js.map": "/static/js/main.01a089af.js.map"
+    "main.css": "/Camper-Buddy/static/css/main.0ef27347.css",
+    "main.js": "/Camper-Buddy/static/js/main.604498fe.js",
+    "static/media/material-symbols-rounded.woff2": "/Camper-Buddy/static/media/material-symbols-rounded.5e9f59e7244d8aad3b14.woff2",
+    "static/media/material-symbols-outlined.woff2": "/Camper-Buddy/static/media/material-symbols-outlined.de9c201a483e2d186c6b.woff2",
+    "static/media/material-symbols-sharp.woff2": "/Camper-Buddy/static/media/material-symbols-sharp.864ffc46172bf868ae01.woff2",
+    "static/media/bootstrap-icons.woff?": "/Camper-Buddy/static/media/bootstrap-icons.39795c0b4513de014cf8.woff",
+    "static/media/background_img.jpeg": "/Camper-Buddy/static/media/background_img.6d2dad2d82e7b6ca3358.jpeg",
+    "static/media/bootstrap-icons.woff2?": "/Camper-Buddy/static/media/bootstrap-icons.b7bcc075b395c14ce8c2.woff2",
+    "static/media/blog_img.jpeg": "/Camper-Buddy/static/media/blog_img.cd67b3acd4431486e947.jpeg",
+    "static/media/logo.png": "/Camper-Buddy/static/media/logo.fdf94b0009f589131f50.png",
+    "static/media/eshop_img.jpeg": "/Camper-Buddy/static/media/eshop_img.78a33a0c85a6ebf133a5.jpeg",
+    "static/media/work_in_progress.png": "/Camper-Buddy/static/media/work_in_progress.20021d1c74edb5cccdd7.png",
+    "static/media/google_logo.png": "/Camper-Buddy/static/media/google_logo.0b50af2fbb8c1e8ca23e.png",
+    "index.html": "/Camper-Buddy/index.html",
+    "main.0ef27347.css.map": "/Camper-Buddy/static/css/main.0ef27347.css.map",
+    "main.604498fe.js.map": "/Camper-Buddy/static/js/main.604498fe.js.map"
   },
   "entrypoints": [
-    "static/css/main.df97aca3.css",
-    "static/js/main.01a089af.js"
+    "static/css/main.0ef27347.css",
+    "static/js/main.604498fe.js"
   ]
 }
