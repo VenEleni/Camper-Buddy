@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "../actions/productActions";
 import "beercss/dist/cdn/beer.min.css";
 import "./CreateProduct.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const CreateProduct = () => {
   const [title, setTitle] = useState("");
@@ -15,7 +15,6 @@ const CreateProduct = () => {
   const [sku, setSku] = useState("");
   const [stock, setStock] = useState();
   const [message, setMessage] = useState(null);
-  const navigate = useNavigate();
 
   const dispatch = useDispatch();
   const productCreate = useSelector((state) => state.productCreate);
@@ -37,16 +36,15 @@ const CreateProduct = () => {
 
     dispatch(createProduct(productData));
     setMessage("Product created successfully!");
-    navigate("/eshop");
   };
 
   return (
     <div className="create_product_body">
       <fieldset>
         <legend className="">
-        <a href="/" className="chip">
-            <i>home</i>
-          </a>
+        <Link to="/eshop" className="chip">
+        <i className="bi bi-shop"></i>
+          </Link>
           Add new Product
           
         </legend>

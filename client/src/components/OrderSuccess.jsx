@@ -5,9 +5,9 @@ import { Link} from "react-router-dom";
 function OrderSuccess() {
     return (
         <div className="left-96 ml-40 top-24">
-            <a href="/">
+            <Link to="/">
           <img src={logo} alt="logo" style={{ width: "100px" }} />
-        </a>
+        </Link>
         <h1 className="text-black">Order Success</h1>
         <p  className="text-black">Your order has been successfully placed.</p>
         <p  className="text-black">We will inform you for the process of you order via mails!</p>

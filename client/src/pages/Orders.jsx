@@ -5,6 +5,7 @@ import { updateOrderStatus } from "../actions/shippingActions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import './Orders.css';
+import { Link } from "react-router-dom";
 
 const Orders = () => {
   const dispatch = useDispatch();
@@ -35,9 +36,9 @@ const Orders = () => {
   return (
     <div className="container mx-auto p-6">
   
-  <a href="/" className="chip">
+  <Link to="/" className="chip">
             <i className="text-black">home</i>
-          </a>
+          </Link>
           <h1 className="text-2xl font-semibold text-black mb-6">Orders</h1>
   <ToastContainer toastClassName="custom-toast" />
   {loading ? (

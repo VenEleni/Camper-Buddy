@@ -82,6 +82,7 @@ const Eshop = () => {
     <div>
       <img src={eshop_img} alt='eshop' className='eshop_banner'/>
     </div>
+    {!selectedProduct && (
     <div className="category-title flex justify-center">
         <h3 className='text-black top-5 mr-10'>{selectedCategory}</h3>
         <div className="search-bar flex justify-center top-4">
@@ -94,6 +95,7 @@ const Eshop = () => {
         />
       </div>
       </div>
+    )}
 
 
     {selectedProduct ? (

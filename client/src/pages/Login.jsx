@@ -4,8 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../actions/authActions';
 import googleLogo from "../assets/google_logo.png";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const LoginForm = () => {
+  const backendUri = process.env.REACT_APP_BACKEND_URI;
     const [formData, setFormData] = useState({
         email: '',
         password: '',
@@ -49,13 +51,13 @@ const LoginForm = () => {
       </div>
       
       <div className="media-options">
-                    <a href="http://localhost:8080/auth/google" className="field google">
+                    <a href={`${backendUri}/auth/google`} className="field google">
                         <img src={googleLogo} alt="Google Logo" className="google-img"/>
                         <span>Login via Google</span>
                     </a>
                 </div>
       <div className="register">
-        <p>Don't have an account? <a href="/register">Register</a></p>
+        <p>Don't have an account? <Link to="/register">Register</Link></p>
       </div>
     </form>
       </div>

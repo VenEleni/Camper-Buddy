@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../actions/authActions';
 import googleLogo from "../assets/google_logo.png";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const RegisterForm = () => {
+  const backendUri = process.env.REACT_APP_BACKEND_URI;
     const [formData, setFormData] = useState({
         username: '',
         email: '',
@@ -52,13 +54,13 @@ const RegisterForm = () => {
       </div>
       
       <div className="media-options">
-                    <a href="http://localhost:8080/auth/google" className="field google">
+                    <a href={`${backendUri}/auth/google`} className="field google">
                         <img src={googleLogo} alt="Google Logo" className="google-img"/>
                         <span>Register via Google</span>
                     </a>
                 </div>
       <div className="register">
-        <p>Already have an account? <a href="/login">Login</a></p>
+        <p>Already have an account? <Link to="/login">Login</Link></p>
       </div>
     </form>
       </div>

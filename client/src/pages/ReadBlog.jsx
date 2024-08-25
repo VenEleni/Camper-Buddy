@@ -23,9 +23,12 @@ const ReadBlog = () => {
             <NavBar/>
             <div>
             <img src={blogs.image} alt={blogs.title} className="blogsImg" />
-            <div className="title_container flex">
+            <div className="flex items-center place-content-center">
+            <div className="title_container">
             <h1 className="blog_title">{blogs.title}</h1>
             </div>
+            </div>
+           
             </div>
             <div className="content_container px-40">
             {blogs.content ? (

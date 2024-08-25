@@ -3,9 +3,9 @@
 .homeBody {
     background-image: url(../assets/background_img.jpeg);
     background-repeat: no-repeat;
-    height: 50rem;
+    height: 60rem;
     background-position: center top;
-    background-size: 85rem 55rem;
+    background-size: 102rem 60rem;
 }
 
 .homepageContainer{
@@ -17,5 +17,5 @@
     font-family: "Julius Sans One", sans-serif ;
     color: white !important;
     line-height: 55px !important;
-    font-size: 39px;;
+    font-size: 2.5vw;
   }

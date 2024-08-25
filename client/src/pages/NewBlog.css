@@ -9,9 +9,9 @@
   /* background-color: #ff0000; */
   background-image: url(../assets/blog_img.jpeg);
   background-repeat: no-repeat;
-  /* height: 50rem; */
+  height: 60rem;
   background-position: center top;
-  background-size: 85rem 55rem;
+  background-size: 102rem 60rem;
 }
 
 .create_blog_input{

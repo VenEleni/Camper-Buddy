@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getProductToUpdate, updateProduct } from "../actions/productActions";
-import { useParams } from "react-router-dom";
-// import {useHistory} from 'react-router-dom';
+import { useParams, Link } from "react-router-dom";
 
 const UpdateProduct = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  //   const history = useHistory();
+
   const { product, loading, error } = useSelector(state => state.productUpdateReducer);
   const [message, setMessage] = useState("");
 
@@ -62,7 +61,7 @@ const UpdateProduct = () => {
   return (
     <div className='create_product_body'>
         <div className="flex items-center">
-        <a href="/eshop" className="bi bi-arrow-return-left mr-10 no-underline top-2"></a>
+        <Link to="/eshop" className="bi bi-arrow-return-left mr-10 no-underline top-2"></Link>
         <h3>Update Product</h3>
         
         </div>

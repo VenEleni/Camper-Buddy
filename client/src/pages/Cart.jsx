@@ -8,6 +8,7 @@ import { reduceCartItemQuantity } from "../actions/cartActions";
 import { increaseCartItemQuantity } from "../actions/cartActions";
 import eshop_img from "../assets/eshop_img.jpeg";
 import Footer from "../components/Footer";
+import { Link } from "react-router-dom";
 
 const FetchCart = () => {
   const dispatch = useDispatch();
@@ -75,9 +76,9 @@ const FetchCart = () => {
         <img src={eshop_img} alt="eshop" className="eshop_banner" />
       </div>
       {cartItems && cartItems.length > 0 && (
-        <a href="/checkout" className=" text-black font-bold my-10 mx-20">
+        <Link to="/checkout" className=" text-black font-bold my-10 mx-20">
           Place your Order
-        </a>
+        </Link>
       )}
   
       <div className=" top-3 mb-16">

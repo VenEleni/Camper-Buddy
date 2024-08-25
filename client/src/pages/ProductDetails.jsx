@@ -5,6 +5,7 @@ import './ProductDetails.css';
 import {createReview} from '../actions/reviewActions';
 import {fetchReviews} from '../actions/reviewActions';
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import { Link } from "react-router-dom";
 
 const ProductDetails = ({ product, onBack }) => {
     const dispatch = useDispatch();
@@ -72,7 +73,7 @@ const ProductDetails = ({ product, onBack }) => {
   return (
     <>
     <i className="bi bi-arrow-left text-black cursor-pointer mt-3 ml-20" onClick={onBack}></i>
-    <div className="grid grid-cols-2">
+    <div className="grid grid-cols-2 items-center justify-items-center">
     
       <img className="w-96 col-span-6 ml-40 " src={product.image} alt={product.name} />
       <div className="col-span-6 mr-10">
@@ -87,7 +88,7 @@ const ProductDetails = ({ product, onBack }) => {
         {cartMessage && <p className="text-black mt-2 ">{cartMessage}</p>}
         </>
         ) : (
-          <p className="text-black" >Please <a className="text-black" href="/login">log in</a> to add to cart</p>
+          <p className="text-black" >Please <Link className="text-black" to="/login">log in</Link> to add to cart</p>
         )}
       </div>
     </div>
@@ -106,7 +107,8 @@ const ProductDetails = ({ product, onBack }) => {
     </ul>
     </div>
     {auth.isAuthenticated ? (
-      <form className="bg-white ml-96 left-40 w-96 h-96" onSubmit={handleSubmit}>
+      <div className="flex items-center place-content-center review_container">
+      <form className="bg-white w-96 h-96" onSubmit={handleSubmit}>
     <fieldset >
   <div className="rating">
       <h5 className="text-black">Star rating</h5>
@@ -144,6 +146,7 @@ const ProductDetails = ({ product, onBack }) => {
 <button type="submit">Submit</button>
 {submitReviewMessage && <p className="text-black mt-2">{submitReviewMessage}</p>}
 </form>
+</div>
     ): (
       <p className="text-black ml-10">Please <a className="text-black" href="/login">log in</a> to leave a review</p>
     )}

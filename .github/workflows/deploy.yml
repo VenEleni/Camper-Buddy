@@ -1,0 +1,59 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]  # adjust this to your main branch name
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Debug - Print API URL
+        run: |
+          echo "API URL is set to: ${REACT_APP_BACKEND_URI:-not set}"
+        env:
+          REACT_APP_BACKEND_URI: ${{ secrets.CAMPER_BUDDY_API_URL }}
+      
+      - name: Clear npm cache
+        run: |
+          npm cache clean --force
+          rm -rf node_modules
+          rm -f package-lock.json
+
+      - name: Install dependencies
+        run: |
+          cd client
+          npm install
+
+      - name: Build
+        run: |
+          cd client
+          echo "REACT_APP_BACKEND_URI=${{ secrets.CAMPER_BUDDY_API_URL }}" >> .env
+          echo "Content of .env file:"
+          cat .env
+          export NODE_OPTIONS=--openssl-legacy-provider
+          CI=false npm run build -- --verbose
+        env:
+          REACT_APP_BACKEND_URI: ${{ secrets.CAMPER_BUDDY_API_URL }}
+
+      - name: Check built files
+        run: |
+          cd client/build
+          echo "Contents of build directory:"
+          ls -R
+          echo "Searching for API URL in main.js:"
+          grep -r "REACT_APP_BACKEND_URI" .
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: client/build
+          token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Elements  } from '@stripe/react-stripe-js';
 import { fetchCartItems } from '../actions/cartActions';
 import axiosInstance from '../components/axiosInstance';
-import CheckoutForm from './CheckOutForm.jsx';
+import CheckoutForm from './CheckoutForm';
 import { loadStripe } from '@stripe/stripe-js';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';

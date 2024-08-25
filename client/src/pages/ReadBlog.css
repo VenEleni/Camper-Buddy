@@ -2,9 +2,9 @@
 
 .title_container{
     top: -200px;
-    /* left: 300px; */
-    margin-left: 24%;
+    width: 60%;
 }
+
 
 .blog_title{
     font-family: "Julius Sans One", sans-serif;
