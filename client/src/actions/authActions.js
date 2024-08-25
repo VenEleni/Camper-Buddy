@@ -58,6 +58,22 @@ export const login = (userData) => async (dispatch) => {
   }
 };
 
+export const handleOAuthCallback = (token) => async (dispatch) => {
+  try {
+    let loggedInUser = {token: token, user: jwtDecode(token).user}
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: loggedInUser,
+    });
+    localStorage.setItem('auth', JSON.stringify(loggedInUser));
+  } catch (error) {
+    dispatch({
+      type: LOGIN_FAIL,
+      payload: 'OAuth login failed',
+    });
+  }
+};
+
 export const logout = () => (dispatch) => {
   localStorage.removeItem('auth');
   dispatch({

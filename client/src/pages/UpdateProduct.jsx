@@ -63,7 +63,7 @@ const UpdateProduct = () => {
     <div className='create_product_body'>
         <div className="flex items-center">
         <a href="/eshop" className="bi bi-arrow-return-left mr-10 no-underline top-2"></a>
-        <h1>Update Product</h1>
+        <h3>Update Product</h3>
         
         </div>
       
@@ -74,7 +74,8 @@ const UpdateProduct = () => {
         <p>{error}</p>
       ) : (
         <form className='create_product_form'  onSubmit={handleSubmit}>
-          <div className="field border ">
+          <div className="field input_container ">
+            <label> TItle</label>
             <input
               className="create_product_input"
               type="text"
@@ -86,17 +87,20 @@ const UpdateProduct = () => {
             />
           </div>
 
-          <div className="field border  textarea">
+          <div className="field input_container textarea">
+          <label> Description</label>
             <textarea
-              className="create_product_input"
+              className="create_product_input textarea_box"
               value={formData.description}
               onChange={handleChange}
               required
               placeholder="Describe your Product"
             ></textarea>
           </div>
-          <div className="field border ">
+          <div className="field input_container">
+          <label>Price in euro</label>
             <input
+            className="create_product_input"
               type="number"
               name="price"
               value={formData.price}
@@ -104,8 +108,10 @@ const UpdateProduct = () => {
               required
             />
           </div>
-          <div className="field border ">
+          <div className="field input_container">
+          <label>Image URL</label>
             <input
+            className="create_product_input"
               type="text"
               name="image"
               value={formData.image}
@@ -115,10 +121,11 @@ const UpdateProduct = () => {
           </div>
 
 
-          <div className="field border ">
+          <div className="field input_container">
+          <label>Select Category</label>
             <select
             name="category"
-              className="create_product_selection"
+              className="create_product_selection create_product_input"
               value={formData.category}
               onChange={handleChange}
               required
@@ -131,10 +138,11 @@ const UpdateProduct = () => {
           </div>
 
 
-          <div className="field border ">
+          <div className="field  input_container">
+          <label>Select Subcategory</label>
             <select
             name="subcategory"
-              className="create_product_selection"
+              className="create_product_selection create_product_input"
               value={formData.subcategory}
               onChange={handleChange}
               required
@@ -156,8 +164,10 @@ const UpdateProduct = () => {
               <option>Other</option>
             </select>
           </div>
-          <div className="field border ">
+          <div className="field input_container">
+          <label>Product Code</label>
             <input
+            className="create_product_input"
               type="text"
               name="sku"
               value={formData.sku}
@@ -165,8 +175,10 @@ const UpdateProduct = () => {
               required
             />
           </div>
-          <div className="field border ">
+          <div className="field  input_container">
+          <label>Product Stock</label>
             <input
+            className="create_product_input"
               type="number"
               name="stock"
               value={formData.stock}

@@ -12,6 +12,8 @@
     color: black !important;
     margin-left: 100px;
     width:15%;
+    border-radius: 8px;
+    padding: 5px;
 }
 
 .select_navBar option{

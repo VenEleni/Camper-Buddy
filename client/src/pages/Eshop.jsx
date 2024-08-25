@@ -41,20 +41,22 @@ const Eshop = () => {
 
   useEffect(() => {
     if (filteredProducts.length > 0) {
-      setproductsToDisplay(filteredProducts);
+      setproductsToDisplay([...filteredProducts].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
     } else {
-      setproductsToDisplay(products);
+      setproductsToDisplay([...products].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
     }
   }, [filteredProducts, products]);
 
   useEffect(() => {
     if (searchQuery) {
-      const filtered = products.filter(product =>
-        product.title.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      const filtered = products
+        .filter(product =>
+          product.title.toLowerCase().includes(searchQuery.toLowerCase())
+        )
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
       setproductsToDisplay(filtered);
     } else {
-      setproductsToDisplay(products);
+      setproductsToDisplay([...products].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
     }
   }, [searchQuery, products]);
 

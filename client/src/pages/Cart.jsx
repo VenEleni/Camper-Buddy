@@ -15,6 +15,7 @@ const FetchCart = () => {
   const auth = JSON.parse(localStorage.getItem("auth"));
   const userId = auth && auth.user ? auth.user.id : null;
   const { loading, error, cartItems } = fetchCart || [];
+  const [cartMessage, setCartMessage] = useState("");
 
   console.log("fetchCart: ", fetchCart);
   console.log("cartItems: ", cartItems);
@@ -50,6 +51,7 @@ const FetchCart = () => {
       await dispatch(reduceCartItemQuantity(userId, product._id));
       console.log("Product's quantity reduced successfully");
     } catch (error) {
+      
       console.error("Error reducing product from cart:", error);
     }
   };
@@ -60,6 +62,7 @@ const FetchCart = () => {
       console.log("Product's quantity increased successfully");
     } catch (error) {
       console.error("Error increasing product from cart:", error);
+      setCartMessage("Error reducing product! Not enough stock");
     }
   };
 
@@ -76,63 +79,66 @@ const FetchCart = () => {
           Place your Order
         </a>
       )}
-
+  
       <div className=" top-3 mb-16">
         {cartItems && cartItems.length > 0 ? (
-          cartItems.map((item) => (
-            <div>
-              <div key={item.product._id} className="flex items-center">
-                <div className="ml-10">
-                  <img
-                    className="w-32 ml-10"
-                    src={item.product.image}
-                    alt={item.product.title}
-                  />
-                </div>
-
-                <div className="ml-10">
-                  <div className="flex items-center">
-                    <p className="text-black text-sm top-2 mr-5">
-                      {item.product.title}
-                    </p>
-                    <div className="flex items-center">
-                      <i
-                        className="bi bi-dash text-black cursor-pointer"
-                        onClick={() =>
-                          handleReduceQuantityFromCart(item.product)
-                        }
-                      ></i>
-                      <p className="text-black text-sm"> {item.quantity}</p>
-                      <i
-                        className="bi bi-plus text-black cursor-pointer"
-                        onClick={() =>
-                          handleIncreaseQuantityFromCart(item.product)
-                        }
-                      ></i>
-                    </div>
+          <div>
+            {cartItems.map((item) => (
+              <div key={item.product._id}>
+                <div className="flex items-center">
+                  <div className="ml-10">
+                    <img
+                      className="w-32 ml-10"
+                      src={item.product.image}
+                      alt={item.product.title}
+                    />
                   </div>
-                  <p className="text-black text-sm">
-                    Price: {item.product.price * item.quantity} €
-                  </p>
+  
+                  <div className="ml-10">
+                    <div className="flex items-center">
+                      <p className="text-black text-sm top-2 mr-5">
+                        {item.product.title}
+                      </p>
+                      <div className="flex items-center">
+                        <i
+                          className="bi bi-dash text-black cursor-pointer"
+                          onClick={() =>
+                            handleReduceQuantityFromCart(item.product)
+                          }
+                        ></i>
+                        <p className="text-black text-sm"> {item.quantity}</p>
+                        <i
+                          className="bi bi-plus text-black cursor-pointer"
+                          onClick={() =>
+                            handleIncreaseQuantityFromCart(item.product)
+                          }
+                        ></i>
+                      </div>
+                    </div>
+                    <p className="text-black text-sm">
+                      Price: {item.product.price * item.quantity} €
+                    </p>
+                  </div>
+                  <i
+                    className="bi bi-x-lg text-black ml-10 cursor-pointer"
+                    onClick={() => handleRemoveFromCart(item.product)}
+                  ></i>
                 </div>
-                <i
-                  className="bi bi-x-lg text-black ml-10 cursor-pointer"
-                  onClick={() => handleRemoveFromCart(item.product)}
-                ></i>
               </div>
-              <div className=" text-black font-bold my-10 ml-80">
-                Total:{" "}
-                {cartItems.reduce(
-                  (acc, current) =>
-                    acc + current.product.price * current.quantity,
-                  0
-                )}{" "}
-                €
-              </div>
+            ))}
+            {cartMessage && <p className="text-black">{cartMessage}</p>}
+            <div className=" text-black font-bold my-10 ml-80">
+              Total:{" "}
+              {cartItems.reduce(
+                (acc, current) =>
+                  acc + current.product.price * current.quantity,
+                0
+              )}{" "}
+              €
             </div>
-          ))
+          </div>
         ) : (
-          <p className="text-black">Your cart is empty</p>
+          <h4 className="text-black left-96 ml-56 p-10">Your cart is empty</h4>
         )}
       </div>
       <Footer />

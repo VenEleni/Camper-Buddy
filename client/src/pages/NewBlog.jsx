@@ -8,6 +8,8 @@ const NewBlog = () => {
     const [title, setTitle] = useState('');
     const [content , setContent] = useState('');
     const [image, setImage] = useState('');
+    
+    const [message, setMessage] = useState(null);
 
     const dispatch = useDispatch();
 
@@ -15,6 +17,7 @@ const NewBlog = () => {
         e.preventDefault();
         const newBlog = { title, content, image };
         dispatch(createBlog(newBlog));
+        setMessage('Blog created successfully');
 
         setTitle('');
         setContent('');
@@ -29,6 +32,7 @@ const NewBlog = () => {
             
         <form className='create_blog_form top-24' onSubmit={handleSubmit}>
             <h4>Write your new blog</h4>
+            {message && <div>{message}</div>}
         <div className="field border ">
           <input className='create_blog_input' value={title} onChange={(e) => setTitle(e.target.value)} required placeholder='Give a title to your blog'  />
         </div>

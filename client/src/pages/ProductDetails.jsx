@@ -38,18 +38,6 @@ const ProductDetails = ({ product, onBack }) => {
   }, [product.reviews]);
 
 
-
-// const handleChange = (e) => {
-//   console.log("e.target.value is : ", e.target.value);
-//   const value = parseInt(e.target.value, 10);
-//   console.log("value is : ", value);
-  
-//   setTotalStars(parseInt(Boolean(e.target.value, 10) ? e.target.value : 5));
-// };
-
-// console.log("totalStars is : ", totalStars);
-
-
   const handleAddToCart = async () => {
     const userId = auth.user ? auth.user.id : null;
     if (userId){
@@ -110,9 +98,9 @@ const ProductDetails = ({ product, onBack }) => {
     <ul>
       {product.reviews && product.reviews.map((review) => (
         <li className="text-black" key={review._id}>
-           <p><strong>{review.username}</strong> says:</p>
+           <p  className="text-black"><strong  className="text-black">{review.username}</strong> says:</p>
           <p className="text-black">Rating: {review.rating}</p>
-          <p>Comment: {review.comment}</p>
+          <p  className="text-black">Comment: "{review.comment}"</p>
         </li>
       ))}
     </ul>

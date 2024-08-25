@@ -4,6 +4,7 @@ import NavBar from "../components/NavBar";
 import {fetchBlog} from '../actions/blogActions';
 import { useParams } from "react-router-dom"; 
 import './ReadBlog.css';
+import Footer from "../components/Footer";
 
 const ReadBlog = () => {
     const { id } = useParams();
@@ -35,6 +36,7 @@ const ReadBlog = () => {
                     <p>Loading content...</p> 
                 )}
             </div>
+            <Footer/>
             
         </div>
     );

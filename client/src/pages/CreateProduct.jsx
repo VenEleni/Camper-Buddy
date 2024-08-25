@@ -44,13 +44,15 @@ const CreateProduct = () => {
     <div className="create_product_body">
       <fieldset>
         <legend className="">
-          Fill all the fields
-          <a href="/" className="chip">
+        <a href="/" className="chip">
             <i>home</i>
           </a>
+          Add new Product
+          
         </legend>
         <form className="create_product_form" onSubmit={handleSubmit}>
-          <div className="field border ">
+          <div className="field">
+            <label>Product's name</label>
             <input
               className="create_product_input"
               value={title}
@@ -59,9 +61,10 @@ const CreateProduct = () => {
               placeholder="Name your Product"
             />
           </div>
-          <div className="field border ">
+          <div className="field">
+          <label>Select Category</label>
             <select
-              className="create_product_selection"
+              className="create_product_selection create_product_input"
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               required
@@ -72,9 +75,10 @@ const CreateProduct = () => {
               <option>Accessories & Extras</option>
             </select>
           </div>
-          <div className="field border ">
+          <div className="field">
+          <label>Select Subcategory</label>
             <select
-              className="create_product_selection"
+              className="create_product_selection create_product_input"
               value={subcategory}
               onChange={(e) => setSubcategory(e.target.value)}
               required
@@ -96,16 +100,18 @@ const CreateProduct = () => {
               <option>Other</option>
             </select>
           </div>
-          <div className="field border  textarea">
+          <div className="field textarea">
+          <label>Describe your product</label>
             <textarea
-              className="create_product_input"
+              className="create_product_input create_product_input textarea_box"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               required
               placeholder="Describe your Product"
             ></textarea>
           </div>
-          <div className="field border ">
+          <div className="field ">
+          <label>Price in euro</label>
             <input
               className="create_product_input"
               type="number"
@@ -115,7 +121,8 @@ const CreateProduct = () => {
               placeholder="Price in euro"
             />
           </div>
-          <div className="field border ">
+          <div className="field">
+          <label>Image URL</label>
             <input
               className="create_product_input"
               type="text"
@@ -125,7 +132,8 @@ const CreateProduct = () => {
               placeholder="Image URL"
             />
           </div>
-          <div className="field border ">
+          <div className="field">
+          <label>Product's stock</label>
             <input
               className="create_product_input"
               type="number"
@@ -135,7 +143,8 @@ const CreateProduct = () => {
               placeholder="Stock"
             />
           </div>
-          <div className="field border ">
+          <div className="field">
+          <label>Product's code</label>
             <input
               className="create_product_input"
               type="text"

@@ -12,11 +12,12 @@
   background-repeat: no-repeat;
   /* height: 50rem; */
   background-position: center top;
-  background-size: 85rem 55rem;
+  background-size: 90rem 60rem;
 }
 
 .create_product_form{
-    height: 800px !important;
+    margin-top: -5px;
+    height: 900px !important;
 }
 
 .create_product_input::placeholder{
@@ -31,6 +32,11 @@
     padding: 50px;
     backdrop-filter: blur(5px);
     background-color: #6161612f;
+    border-bottom-color: rgb(255 255 255) !important;
+}
+
+.create_product_selection{
+    border-color: white !important;
 }
 
 
@@ -39,13 +45,21 @@
 }
 
 .create_product_button{
-    background-color: #ffffff50 !important; 
+    background-color: #4e9f1f50 !important; 
     color: white;
     padding: 10px 10px;
     width: 50%;
 }
 
 .create_product_button:hover{
-    background-color: #a5a5a579 !important; 
+    background-color: #4e9f1f99 !important; 
     color: white !important;
+}
+
+.input_container{
+    bottom: 30px;
+}
+
+.textarea_box {
+    width: 600px !important;
 }

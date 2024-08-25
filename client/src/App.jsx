@@ -22,6 +22,7 @@ import NewBlog from './pages/NewBlog';
 import ReadBlog from './pages/ReadBlog';
 import ForumErrorPage from './pages/ForumErrorPage';
 import UpdateProduct from './pages/UpdateProduct';
+import OAuthCallback from './components/OAuthCallback';
 
 
 // const stripePromise = loadStripe('pk_test_51Pp6A1DAYdBNDDpzWqzOXTTwS9zWqVFywfV3GgGIAqtZQDHx3iCwFAcRdxha3QYMLJOWLlRyopicdqhhDqjkOs4600Nd9YHySl');
@@ -43,6 +44,7 @@ function App() {
         <Route path='/blogs/:id' element={<ReadBlog />}/>
         <Route path='/forumerror' element={<ForumErrorPage />}/>
         <Route path="/updateproduct/:id"  element={<UpdateProduct />}/>
+        <Route path='/oauth-callback' element={<OAuthCallback />} />
         <Route path='/orders' element={<Orders />}/>
         <Route
             path='/checkout'

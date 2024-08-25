@@ -14,7 +14,7 @@ exports.getAllUsers = async (req, res) => {
 };
 
 exports.register = async (req, res) => {
-  const { username, email, password, role } = req.body; //should include role, even if it's not required.Before this, I tried to register as admin, and it returned the user but with a role as "user".
+  const { username, email, password, role } = req.body; 
   try {
     const existingUser = await UserModel.findOne({ email });
     if (existingUser) {

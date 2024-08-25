@@ -26,7 +26,7 @@ router.get('/google/callback',
       { expiresIn: '1h' },
       (err, token) => {
         if (err) throw err;
-        res.redirect(process.env.FRONTEND_URI);
+        res.redirect(`${process.env.FRONTEND_URI}/oauth-callback?token=${token}`);
       }
     )
   }

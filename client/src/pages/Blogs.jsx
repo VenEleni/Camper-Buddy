@@ -25,7 +25,7 @@ const Blogs = () => {
   return (
     <div className="blog_container">
         <NavBar/>
-        <div>
+        <div >
         <img src={blog_img} alt="blogs" className="blogsImg"/>
         <div className="h1_container flex">
         <h1 className=" mr-10 h1_blogs">Blogs</h1>
@@ -44,7 +44,7 @@ const Blogs = () => {
                 {error && <p>Error: {error}</p>}
                 {blogs.length > 0 ? (
                     blogs.map((blog) => (
-                        <div key={blog._id} className="blog_item cursor-pointer ml-48" onClick={() =>  navigate(`/blogs/${blog._id}`)} style={{
+                        <div key={blog._id} className="blog_item cursor-pointer ml-48 mb-10" onClick={() =>  navigate(`/blogs/${blog._id}`)} style={{
                             backgroundImage: `url(${blog.image})`,
                             backgroundSize: 'cover', // covers the div without stretching
                             backgroundPosition: 'center', // centers the image

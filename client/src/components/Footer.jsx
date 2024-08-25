@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <>
 
-        <footer className="text-center text-black mt-5" style={{ backgroundColor: '#f1f1f1' }}>
+        <footer className="text-center text-black mt-5" style={{ backgroundColor: '#dedede' }}>
         <div className="container pt-4">
           <section className="mb-4">
 <p className='text-black'>
@@ -30,7 +30,7 @@ const Footer = () => {
            
           </section>
         </div>
-        <div className="text-center text-dark  pb-3" style={{ backgroundColor: '#f1f1f1' }}>
+        <div className="text-center text-dark  pb-3" style={{ backgroundColor: '#dedede' }}>
           © 2024 Project for:
           <a className="text-dark ml-2" href="https://socialhackersacademy.org/"> socialhackersacademy.com</a>
         </div>
