@@ -21,7 +21,7 @@ require("./passport");
 
 app.use(express.json());
 app.use(cors({
-    origin: FRONTEND_URI_ORIGIN,
+    origin: [FRONTEND_URI_ORIGIN, 'http://localhost:3000'],
     credentials: true
 }));
 
