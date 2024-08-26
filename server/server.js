@@ -6,6 +6,7 @@ const dotenv = require("dotenv");
 const app = express();
 const PORT = process.env.PORT || 8080;
 const FRONTEND_URI_ORIGIN = process.env.FRONTEND_URI_ORIGIN;
+const LOCAL_ORIGIN = process.env.LOCAL_ORIGIN;
 const userRoutes = require("./routes/userRoute");
 const authRoutes = require('./routes/authRoute')
 const productRoutes= require('./routes/productRoute')
@@ -21,7 +22,14 @@ require("./passport");
 
 app.use(express.json());
 app.use(cors({
-    origin: [FRONTEND_URI_ORIGIN, 'http://localhost:3000'],
+    origin: function (origin, callback) {
+        const allowedOrigins = [FRONTEND_URI_ORIGIN, LOCAL_ORIGIN];
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
     credentials: true
 }));
 
