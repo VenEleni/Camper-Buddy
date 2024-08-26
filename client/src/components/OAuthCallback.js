@@ -9,29 +9,25 @@ function OAuthCallback() {
   const location = useLocation();
 
   useEffect(() => {
-    const handleCallback = async () => {
-      const urlParams = new URLSearchParams(location.search);
-      const token = urlParams.get('token');
-      
-      if (token) {
-        try {
-          await dispatch(handleOAuthCallback(token));
-          // Redirect to the homepage
+    const urlParams = new URLSearchParams(location.search);
+    const token = urlParams.get('token');
+    
+    if (token) {
+      dispatch(handleOAuthCallback(token))
+        .then(() => {
           navigate('/');
-        } catch (error) {
-          console.error('Error processing OAuth callback:', error);
-          navigate('/login', { state: { error: 'Failed to process login. Please try again.' } });
-        }
-      } else {
-        console.error('No token received from OAuth login');
-        navigate('/login', { state: { error: 'No authentication token received. Please try again.' } });
-      }
-    };
-
-    handleCallback();
+        })
+        .catch((error) => {
+          console.error('OAuth callback error:', error);
+          navigate('/login', { state: { error: 'Authentication failed. Please try again.' } });
+        });
+    } else {
+      console.error('No token received in OAuth callback');
+      navigate('/login', { state: { error: 'No authentication token received. Please try again.' } });
+    }
   }, [dispatch, navigate, location]);
 
-  return <div>Processing login...</div>;
+  return <div>Processing authentication...</div>;
 }
 
 export default OAuthCallback;
