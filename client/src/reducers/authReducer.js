@@ -62,7 +62,7 @@ const authReducer = (state = initialState, action) => {
         error: null,
       };
       console.log("Success - New state:", newStateOnSuccess);
-      return newState;
+      return newStateOnSuccess;
     case REGISTER_FAIL:
     case LOGIN_FAIL:
       console.log("Fail - Reducer action payload:", action.payload);      
@@ -74,7 +74,7 @@ const authReducer = (state = initialState, action) => {
         error: action.payload,
       };
       console.log("Fail - New state:", newStateOnFailure);
-      return newState;
+      return newStateOnFailure;
       case LOG_OUT:
         return {
           ...state,
