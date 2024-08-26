@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Camper-Buddy/static/css/main.ae3f4521.css",
-    "main.js": "/Camper-Buddy/static/js/main.61ffa386.js",
+    "main.css": "/Camper-Buddy/static/css/main.b66a3261.css",
+    "main.js": "/Camper-Buddy/static/js/main.9e51ddb8.js",
     "static/media/material-symbols-rounded.woff2": "/Camper-Buddy/static/media/material-symbols-rounded.5e9f59e7244d8aad3b14.woff2",
     "static/media/material-symbols-outlined.woff2": "/Camper-Buddy/static/media/material-symbols-outlined.de9c201a483e2d186c6b.woff2",
     "static/media/material-symbols-sharp.woff2": "/Camper-Buddy/static/media/material-symbols-sharp.864ffc46172bf868ae01.woff2",
@@ -14,11 +14,11 @@
     "static/media/work_in_progress.png": "/Camper-Buddy/static/media/work_in_progress.20021d1c74edb5cccdd7.png",
     "static/media/google_logo.png": "/Camper-Buddy/static/media/google_logo.0b50af2fbb8c1e8ca23e.png",
     "index.html": "/Camper-Buddy/index.html",
-    "main.ae3f4521.css.map": "/Camper-Buddy/static/css/main.ae3f4521.css.map",
-    "main.61ffa386.js.map": "/Camper-Buddy/static/js/main.61ffa386.js.map"
+    "main.b66a3261.css.map": "/Camper-Buddy/static/css/main.b66a3261.css.map",
+    "main.9e51ddb8.js.map": "/Camper-Buddy/static/js/main.9e51ddb8.js.map"
   },
   "entrypoints": [
-    "static/css/main.ae3f4521.css",
-    "static/js/main.61ffa386.js"
+    "static/css/main.b66a3261.css",
+    "static/js/main.9e51ddb8.js"
   ]
 }
