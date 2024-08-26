@@ -5,7 +5,7 @@ const db = require("./config/connection");
 const dotenv = require("dotenv");
 const app = express();
 const PORT = process.env.PORT || 8080;
-const FRONTEND_URI = process.env.FRONTEND_URI;
+const FRONTEND_URI_ORIGIN = process.env.FRONTEND_URI;
 const userRoutes = require("./routes/userRoute");
 const authRoutes = require('./routes/authRoute')
 const productRoutes= require('./routes/productRoute')
@@ -21,7 +21,7 @@ require("./passport");
 
 app.use(express.json());
 app.use(cors({
-    origin: FRONTEND_URI,
+    origin: FRONTEND_URI_ORIGIN,
     credentials: true
 }));
 
