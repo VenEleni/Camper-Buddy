@@ -13,6 +13,16 @@ function OAuthCallback() {
     const urlParams = new URLSearchParams(location.search);
     const token = urlParams.get('token');
     console.log('OAuthCallback - token:', token);
+
+    if (!token && location.search.includes('q=')) {
+      const qParam = urlParams.get('q');
+      if (qParam) {
+        const qParams = new URLSearchParams(qParam);
+        token = qParams.get('token');
+      }
+    }
+
+    console.log('OAuthCallback - Extracted token:', token);
     
     if (token) {
       dispatch(handleOAuthCallback(token))
