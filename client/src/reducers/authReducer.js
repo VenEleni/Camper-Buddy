@@ -53,25 +53,28 @@ const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:
-      console.log("Reducer action payload:", action.payload);
-      const newState = {
+      console.log("Success - Reducer action payload:", action.payload);
+      const newStateOnSuccess = {
         ...state,
         token: action.payload.token,
         isAuthenticated: true,
         user: action.payload.user,
         error: null,
       };
-      console.log("New state:", newState);
+      console.log("Success - New state:", newStateOnSuccess);
       return newState;
     case REGISTER_FAIL:
     case LOGIN_FAIL:
-      return {
+      console.log("Fail - Reducer action payload:", action.payload);      
+      const newStateOnFailure = {
         ...state,
         token: null,
         isAuthenticated: false,
         user: null,
         error: action.payload,
       };
+      console.log("Fail - New state:", newStateOnFailure);
+      return newState;
       case LOG_OUT:
         return {
           ...state,
