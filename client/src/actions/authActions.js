@@ -67,10 +67,12 @@ export const handleOAuthCallback = (token) => async (dispatch) => {
     });
     localStorage.setItem('auth', JSON.stringify(loggedInUser));
   } catch (error) {
+    console.error('Error in handleOAuthCallback:', error);
     dispatch({
       type: LOGIN_FAIL,
-      payload: 'OAuth login failed',
+      payload: 'OAuth authentication failed',
     });
+    return Promise.reject(error);
   }
 };
 

@@ -9,12 +9,15 @@ function OAuthCallback() {
   const location = useLocation();
 
   useEffect(() => {
+    console.log('OAuthCallback - location:', location);
     const urlParams = new URLSearchParams(location.search);
     const token = urlParams.get('token');
+    console.log('OAuthCallback - token:', token);
     
     if (token) {
       dispatch(handleOAuthCallback(token))
         .then(() => {
+          console.log('OAuthCallback - handleOAuthCallback success');
           navigate('/');
         })
         .catch((error) => {

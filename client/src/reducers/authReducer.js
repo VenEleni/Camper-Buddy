@@ -49,6 +49,7 @@ try {
 }
 
 const authReducer = (state = initialState, action) => {
+  console.log('Auth Reducer - Action:', action.type, 'Payload:', action.payload);
   switch (action.type) {
     case REGISTER_SUCCESS:
     case LOGIN_SUCCESS:

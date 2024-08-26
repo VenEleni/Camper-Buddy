@@ -12,24 +12,30 @@ import userFetchByIdReducer from './reducers/userFetchByIdReducer';
 import cartReducer from './reducers/cartReducer';
 import blogReducer from './reducers/blogReducers';
 import productUpdateReducer from './reducers/productUpdateReducer';
+import { loggingMiddleware } from './loggingMiddleware';
+
+const rootReducer = {
+  auth: authReducer,
+  productCreate: productCreateReducer,
+  productsFetch: productsFetchReducer,
+  cartReducer: cartReducer,
+  fetchFilteredProducts: fetchFilteredProductsReducer,
+  shippingSetInfo: shippingSetInfoReducer,
+  ordersFetch: ordersFetchReducer,
+  updateOrderStatus: orderUpdateStatusReducer,
+  reviewCreate: reviewCreateReducer,
+  reviewFetch: reviewFetchReducer,
+  userFetchById: userFetchByIdReducer,
+  blogReducer: blogReducer,
+  productUpdateReducer: productUpdateReducer
+};
 
 const store = configureStore({
-  reducer: {
-    auth: authReducer,
-    productCreate: productCreateReducer,
-    productsFetch: productsFetchReducer,
-    cartReducer: cartReducer,
-    fetchFilteredProducts: fetchFilteredProductsReducer,
-    shippingSetInfo: shippingSetInfoReducer,
-    ordersFetch: ordersFetchReducer,
-    updateOrderStatus: orderUpdateStatusReducer,
-    reviewCreate: reviewCreateReducer,
-    reviewFetch: reviewFetchReducer,
-    userFetchById: userFetchByIdReducer,
-    blogReducer: blogReducer,
-    productUpdateReducer: productUpdateReducer
-  },
+  reducer: rootReducer,
   devTools: process.env.NODE_ENV !== 'production',
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+    serializableCheck: false
+  }).concat(loggingMiddleware)
 });
 
 export default store;
